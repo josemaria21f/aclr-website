@@ -4,148 +4,138 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACLR Mobility</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (reemplaza TU_KIT_ID con tu propio Kit ID) -->
+  <script src="https://kit.fontawesome.com/TU_KIT_ID.js" crossorigin="anonymous"></script>
+  <!-- Hoja de estilos -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header class="topbar">
-  <div class="container">
-    <div class="logo-nav">
-      <img src="logo_aclr.png" alt="ACLR Mobility" class="logo" />
-      <nav>
+  <header class="topbar">
+    <div class="container">
+      <div class="logo-nav">
+        <div class="logo">ACLR Mobility</div>
+        <nav>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+      <a href="#contacto" class="btn-primary">Reserva diagnóstico</a>
+    </div>
+  </header>
+
+  <section class="hero-home">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Impulsa tu negocio de automoción con procesos digitales sin fricción</h1>
+        <p>Soluciones integrales de compraventa, consultoría y automatización para maximizar tus ventas y optimizar tu tiempo.</p>
+        <a href="#contacto" class="btn-primary">Reserva tu diagnóstico gratuito</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="servicios">
+    <div class="container servicio-header">
+      <h2>¿Qué podemos hacer por ti?</h2>
+    </div>
+    <div class="servicio-grid">
+
+      <div class="servicio">
+        <div class="icon-wrapper"><i class="fas fa-car-side"></i></div>
+        <h3>Compraventa profesional</h3>
+        <p>Gestionamos todo el proceso de compraventa profesional: optimizamos tus costes y realizamos seguimiento completo de cada euro gestionado, garantizando mejores márgenes.</p>
+      </div>
+
+      <div class="servicio">
+        <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+        <h3>Consultoría estratégica</h3>
+        <p>Aumenta tus beneficios un 15 % optimizando procesos y abriendo nuevos canales digitales.</p>
+      </div>
+
+      <div class="servicio">
+        <div class="icon-wrapper"><i class="fas fa-cogs"></i></div>
+        <h3>Automatización & digitalización</h3>
+        <p>Reduce errores un 90 % y ahorra hasta 10 h semanales con flujos automáticos.</p>
+      </div>
+
+      <div class="servicio">
+        <div class="icon-wrapper"><i class="fas fa-handshake"></i></div>
+        <h3>Consultoría personalizada</h3>
+        <p>Soluciones a medida con acompañamiento directo para tu negocio.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="nosotros" class="sobre-nosotros">
+    <div class="sobre-container">
+      <div class="sobre-col texto">
+        <h2>Una empresa pequeña, con visión grande</h2>
+        <p class="intro">Con más de 10 años acompañando a talleres y concesionarios, en ACLR Mobility conocemos cada desafío sobre el terreno.</p>
+        <p>Combinamos tecnología ágil con procesos simplificados para que tú solo te preocupes de crecer.</p>
+        <p>Hemos liderado la digitalización del sector automoción, implementando soluciones innovadoras que transforman la gestión operacional y generan valor en cada etapa.</p>
+        <div class="valores-grid">
+          <div class="valor">
+            <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <h4>Compromiso</h4>
+            <p>Tratamos cada proyecto como si fuera nuestro, con transparencia y sin falsas promesas.</p>
+          </div>
+          <div class="valor">
+            <div class="icon"><i class="fas fa-lightbulb"></i></div>
+            <h4>Innovación útil</h4>
+            <p>Digitalizamos con sentido, implementando tecnología que realmente aporta valor.</p>
+          </div>
+          <div class="valor">
+            <div class="icon"><i class="fas fa-trophy"></i></div>
+            <h4>Enfoque a resultados</h4>
+            <p>Todo lo que hacemos busca mejorar tus márgenes, tu tiempo y tu crecimiento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <div class="contacto-container">
+      <div class="contacto-info">
+        <h2>Contacto</h2>
+        <p>¿Quieres saber cómo podemos ayudarte? Escríbenos y te responderemos en 24 h.</p>
+        <p><strong>Email:</strong> <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a></p>
+      </div>
+      <form class="formulario-contacto" action="https://formspree.io/f/xpwldpnb" method="POST">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo electrónico" required />
+        <textarea name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
+        <button type="submit" class="btn-primary">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="cta-container">
+      <h2>¿Listo para acelerar tu negocio?</h2>
+      <p>Impulsa tus ventas, digitaliza tu gestión y mejora tus resultados con ACLR Mobility.</p>
+      <a href="#contacto" class="btn-primary">Reserva tu diagnóstico</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">ACLR Mobility</div>
+      <nav class="footer-nav">
         <a href="#servicios">Servicios</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a>
       </nav>
-    </div>
-    <a href="#contacto" class="btn-primary">Contáctanos</a>
-  </div>
-</header>
-
-<section class="hero-home">
-  <div class="hero-content">
-    <h1>Tu partner ideal en soluciones de automoción</h1>
-    <p>Desde la compraventa hasta la optimización digital. Impulsa tu negocio con ACLR Mobility.</p>
-  </div>
-</section>
-
-<section id="servicios" class="servicios">
-  <h2>¿Qué podemos hacer por ti?</h2>
-<div class="servicio-grid">
-
-  <div class="servicio">
-    <div class="icono">🚗</div>
-    <h3>Compraventa profesional</h3>
-    <p>Gestionamos todo el ciclo de compraventa: desde la oferta hasta la entrega, nacional o internacional.</p>
-  </div>
-
-  <div class="servicio">
-    <div class="icono">🧠</div>
-    <h3>Consultoría estratégica</h3>
-    <p>Optimizamos procesos, márgenes y estructura digital de tu negocio para maximizar resultados.</p>
-  </div>
-
-  <div class="servicio">
-    <div class="icono">⚙️</div>
-    <h3>Automatización & digitalización</h3>
-    <p>Implantamos herramientas que te ahorran tiempo y evitan errores en tareas repetitivas.</p>
-  </div>
-
-  <div class="servicio">
-    <div class="icono">🤝</div>
-    <h3>Consultoría personalizada</h3>
-    <p>Nos adaptamos a las necesidades reales de tu empresa con soluciones a medida y acompañamiento directo.</p>
-  </div>
-
-</div>
-
-</section>
-
-
-
-
-<section id="nosotros" class="sobre-nosotros">
-  <div class="sobre-container">
-
-    <div class="sobre-col texto">
-      <h2>Una empresa pequeña, con visión grande</h2>
-      <p class="intro">
-        En ACLR Mobility llevamos más de 10 años en el sector automoción, ayudando a profesionales a vender más, mejor y con menos fricción.
-      </p>
-      <p>
-        Conocemos los retos reales porque venimos del terreno. Por eso combinamos procesos simples, tecnología útil y una relación cercana y transparente.
-      </p>
-
-      <div class="valores-grid">
-        <div class="valor">
-          <div class="icon">🤝</div>
-          <h4>Compromiso</h4>
-          <p>Trabajamos cada proyecto como si fuera nuestro, sin rodeos ni falsas promesas.</p>
-        </div>
-        <div class="valor">
-          <div class="icon">💡</div>
-          <h4>Innovación útil</h4>
-          <p>Aplicamos tecnología que resuelve, no que complica. Digitalizar sí, pero con sentido.</p>
-        </div>
-        <div class="valor">
-          <div class="icon">📈</div>
-          <h4>Enfoque a resultados</h4>
-          <p>Todo lo que hacemos busca mejorar tus márgenes, tu tiempo y tu crecimiento.</p>
-        </div>
+      <div class="footer-info">
+        <p>&copy; 2025 ACLR Mobility. Todos los derechos reservados.</p>
+        <p>📧 <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a></p>
       </div>
     </div>
-
-   
-
-  </div>
-</section>
-
-
-
- <section id="contacto" class="contacto">
-  <div class="contacto-container">
-
-    <div class="contacto-info">
-      <h2>Contacto</h2>
-      <p>¿Quieres saber cómo podemos ayudarte? Escríbenos y nos pondremos en contacto contigo lo antes posible.</p>
-      <p><strong>Email:</strong> <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a></p>
-    </div>
-
-    <form class="formulario-contacto" action="https://formspree.io/f/xpwldpnb" method="POST">
-      <input type="text" name="nombre" placeholder="Tu nombre" required />
-      <input type="email" name="email" placeholder="Tu correo electrónico" required />
-      <textarea name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
-      <button type="submit" class="btn-primary">Enviar mensaje</button>
-    </form>
-
-  </div>
-</section>
-<section class="cta-final">
-  <div class="cta-container">
-    <h2>¿Listo para acelerar tu negocio?</h2>
-    <p>Impulsa tus ventas, digitaliza tu gestión y mejora tus resultados con ACLR Mobility.</p>
-    <a href="#contacto" class="btn-primary">Contáctanos</a>
-  </div>
-</section>
-
-
- <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-logo">ACLR Mobility</div>
-
-    <nav class="footer-nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-
-    <div class="footer-info">
-      <p>&copy; 2025 ACLR Mobility. Todos los derechos reservados.</p>
-      <p>📧 <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a></p>
-    </div>
-  </div>
-</footer>
-
-
+  </footer>
 </body>
 </html>
