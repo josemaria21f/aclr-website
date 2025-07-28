@@ -151,6 +151,11 @@ nav a:last-child {
 }
 
 /* Tabs Servicios */
+
+section#servicios-toggle {
+  scroll-margin-top: 50px; /* ajusta a la altura de tu header */
+}
+
 .tabs {
   display: flex;
   justify-content: center;
@@ -381,13 +386,16 @@ section#como-trabajamos {
 
 
 /* Nosotros */
-
+section#nosotros {
+  scroll-margin-top: 50px; /* ajusta a la altura de tu header */
+}
 
 .nosotros-final {
   background-color: var(--color-bg-alt);
-  padding: calc(var(--spacing-lg) * 1.5) 0;
+  padding: var(--spacing-lg) 0; /* antes era calc(var(--spacing-lg) * 1.5) */
   text-align: center;
 }
+
 
 .nosotros-final .container {
   max-width: 1200px;
