@@ -11,93 +11,253 @@
   <script src="https://kit.fontawesome.com/TU_KIT_ID.js" crossorigin="anonymous"></script>
   <!-- Hoja de estilos -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .tarjetas-servicios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .tarjeta {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 320px;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta:hover {
+      transform: translateY(-5px);
+    }
+    .tarjeta img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .tarjeta h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin: 1rem;
+    }
+    .tarjeta p {
+      font-size: 1rem;
+      color: #555;
+      padding: 0 1rem 1.5rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .tab-button {
+      background-color: #eee;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .tab-button.active {
+      background-color: #0066cc;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+  <script>
+    function mostrarTab(tabId, event) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelector('.tab-button.active')?.click();
+    });
+  </script>
 </head>
-<body>
-
-  <header class="topbar">
-    <div class="container">
-      <div class="logo-nav">
-        <div class="logo">ACLR Mobility</div>
-        <nav>
-          <a href="#servicios">Servicios</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-      </div>
-      <a href="#contacto" class="btn-primary">Reserva diagnóstico</a>
+<body id="top">
+<header class="topbar">
+  <div class="container">
+    <div class="logo-nav">
+      <a href="#top" class="logo">ACLR Mobility</a>
+      <nav class="main-nav">
+        <a href="#servicios-toggle">Servicios</a>
+        <a href="#como-trabajamos">Cómo trabajamos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#valores">Valores</a>
+      </nav>
     </div>
-  </header>
+    <a href="#contacto" class="btn-primary">Contáctanos</a>
+  </div>
+</header>
+<section class="hero-home">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>Impulsa tu negocio de automoción con procesos digitales sin fricción</h1>
+      <p>Soluciones integrales de compraventa, consultoría y automatización para maximizar tus ventas y optimizar tu tiempo.</p>
+      <a href="#contacto" class="btn-primary">Reserva tu diagnóstico</a>
+    </div>
+  </div>
+</section>
 
-  <section class="hero-home">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <h1>Impulsa tu negocio de automoción con procesos digitales sin fricción</h1>
-        <p>Soluciones integrales de compraventa, consultoría y automatización para maximizar tus ventas y optimizar tu tiempo.</p>
-        <a href="#contacto" class="btn-primary">Reserva tu diagnóstico gratuito</a>
+<section id="servicios-toggle" class="servicios-toggle">
+  <div class="container">
+    <h2 class="titulo-servicios">Nuestros Servicios</h2>
+
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        <button class="tab-button active" onclick="mostrarTab('compraventa', event)">Compraventa</button>
+        <button class="tab-button" onclick="mostrarTab('consultoria', event)">Consultoría</button>
       </div>
     </div>
-  </section>
 
-  <section id="servicios" class="servicios">
-    <div class="container servicio-header">
-      <h2>¿Qué podemos hacer por ti?</h2>
-    </div>
-    <div class="servicio-grid">
-
-      <div class="servicio">
-        <div class="icon-wrapper"><i class="fas fa-car-side"></i></div>
-        <h3>Compraventa profesional</h3>
-        <p>Gestionamos todo el proceso de compraventa profesional: optimizamos tus costes y realizamos seguimiento completo de cada euro gestionado, garantizando mejores márgenes.</p>
-      </div>
-
-      <div class="servicio">
-        <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
-        <h3>Consultoría estratégica</h3>
-        <p>Aumenta tus beneficios un 15 % optimizando procesos y abriendo nuevos canales digitales.</p>
-      </div>
-
-      <div class="servicio">
-        <div class="icon-wrapper"><i class="fas fa-cogs"></i></div>
-        <h3>Automatización & digitalización</h3>
-        <p>Reduce errores un 90 % y ahorra hasta 10 h semanales con flujos automáticos.</p>
-      </div>
-
-      <div class="servicio">
-        <div class="icon-wrapper"><i class="fas fa-handshake"></i></div>
-        <h3>Consultoría personalizada</h3>
-        <p>Soluciones a medida con acompañamiento directo para tu negocio.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="nosotros" class="sobre-nosotros">
-    <div class="sobre-container">
-      <div class="sobre-col texto">
-        <h2>Una empresa pequeña, con visión grande</h2>
-        <p class="intro">Con más de 10 años acompañando a talleres y concesionarios, en ACLR Mobility conocemos cada desafío sobre el terreno.</p>
-        <p>Combinamos tecnología ágil con procesos simplificados para que tú solo te preocupes de crecer.</p>
-        <p>Hemos liderado la digitalización del sector automoción, implementando soluciones innovadoras que transforman la gestión operacional y generan valor en cada etapa.</p>
-        <div class="valores-grid">
-          <div class="valor">
-            <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
-            <h4>Compromiso</h4>
-            <p>Tratamos cada proyecto como si fuera nuestro, con transparencia y sin falsas promesas.</p>
-          </div>
-          <div class="valor">
-            <div class="icon"><i class="fas fa-lightbulb"></i></div>
-            <h4>Innovación útil</h4>
-            <p>Digitalizamos con sentido, implementando tecnología que realmente aporta valor.</p>
-          </div>
-          <div class="valor">
-            <div class="icon"><i class="fas fa-trophy"></i></div>
-            <h4>Enfoque a resultados</h4>
-            <p>Todo lo que hacemos busca mejorar tus márgenes, tu tiempo y tu crecimiento.</p>
-          </div>
+    <div id="compraventa" class="tab-content active">
+      <div class="tarjetas-servicios">
+        <div class="tarjeta">
+          <img src="compra.jpg" alt="Compra">
+          <h3>Compra</h3>
+          <p>Buscamos oportunidades por ti, analizamos condiciones y actuamos como broker o proveedor directo.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="venta.jpg" alt="Venta">
+          <h3>Venta</h3>
+          <p>Te apoyamos en la preparación, publicación y cierre de operaciones para maximizar tu rentabilidad.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="logística.png" alt="Logística">
+          <h3>Logística</h3>
+          <p>Coordinamos transporte, almacenamiento, documentación y trazabilidad.</p>
         </div>
       </div>
     </div>
-  </section>
+
+    <div id="consultoria" class="tab-content">
+      <div class="tarjetas-servicios">
+        <div class="tarjeta">
+          <img src="consultoria estrategica.jpg" alt="Consultoría">
+          <h3>Consultoría estratégica</h3>
+          <p>Modelos operativos, estructura y visión comercial adaptados a tus objetivos reales.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="automatización.jpeg" alt="Automatización">
+          <h3>Automatización de procesos</h3>
+          <p>Digitalizamos tus flujos clave con herramientas como Google Sheets, Apps Script o formularios.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="mentoría.jpg" alt="Sistemas">
+          <h3>Sistemas a medida y mentoría</h3>
+          <p>Diseñamos soluciones claras, sin plataformas innecesarias, y te acompañamos en tu crecimiento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="como-trabajamos" class="steps-horizontal">
+  <div class="section-header">
+    <h2>Cómo trabajamos</h2>
+    <p class="intro">Nuestra metodología combina análisis, tecnología y acompañamiento para generar mejoras reales y sostenibles desde el primer día.</p>
+  </div>
+
+  <div class="timeline-wrapper">
+    <div class="timeline">
+      <div class="step-h">
+        <div class="circle">1</div>
+        <h3>Auditoría rápida</h3>
+        <p>Analizamos tus procesos actuales y detectamos ineficiencias sin interrumpir la operativa.</p>
+      </div>
+      <div class="step-h">
+        <div class="circle">2</div>
+        <h3>Automatización práctica</h3>
+        <p>Digitalizamos flujos clave: compras, pricing, seguimiento y reportes con herramientas accesibles.</p>
+      </div>
+      <div class="step-h">
+        <div class="circle">3</div>
+        <h3>Seguimiento y evolución</h3>
+        <p>Te acompañamos tras la implementación para garantizar mejoras medibles y escalables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="nosotros" class="nosotros-final">
+  <div class="container">
+    <h2>Expertos en automoción y procesos digitales</h2>
+    
+    <p class="intro">
+      Más de 10 años transformando empresas del sector de automoción, tanto tradicionales como digitales.
+      Sabemos cómo optimizar operaciones, automatizar flujos y diseñar modelos de venta rentables.
+    </p>
+
+    <div class="bloques-nosotros">
+      <div class="bloque">
+        <h4>Digitalización eficaz</h4>
+        <p>Automatizamos procesos manuales y mejoramos la eficiencia sin interrumpir tu operativa diaria...</p>
+      </div>
+      <div class="bloque">
+        <h4>Compras & estrategia</h4>
+        <p>Optimizamos costes, márgenes y proveedores. Aplicamos modelos de control económico...</p>
+      </div>
+      <div class="bloque">
+        <h4>Modelos de venta modernos</h4>
+        <p>Desde el pricing hasta el enfoque comercial. Adaptamos tu negocio con modelos...</p>
+      </div>
+    </div>
+
+    <p class="cierre">
+      Aportamos visión técnica, experiencia operativa y capacidad de ejecución.
+      Porque en automoción, el cambio no es solo digital, es estructural.
+    </p>
+  </div>
+</section>
+
+
+
+  <section id="valores" class="valores">
+  <div class="container">
+    <h2>Nuestros valores</h2>
+    <p class="intro">
+      Sabemos lo que cuesta confiar en un partner externo. Por eso nuestros valores no son promesas vacías: son prácticas que aplicamos en cada cliente, desde el primer día.
+    </p>
+    <div class="valores-grid">
+      <div class="valor">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <h4>Compromiso auténtico</h4>
+        <p>Trabajamos como parte de tu equipo: cercanos, directos y siempre orientados a resultados.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-lightbulb"></i></div>
+        <h4>Innovación práctica</h4>
+        <p>Aplicamos solo tecnología que genera impacto real. Nada de humo: soluciones que funcionan.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-trophy"></i></div>
+        <h4>Orientación al éxito</h4>
+        <p>Cada paso que damos está alineado con tus objetivos. Medimos, ajustamos y volvemos a medir.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-eye"></i></div>
+        <h4>Transparencia total</h4>
+        <p>Informes claros, sin letra pequeña. Sabes en todo momento qué se está haciendo y por qué.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section id="contacto" class="contacto">
     <div class="contacto-container">
@@ -139,3 +299,5 @@
   </footer>
 </body>
 </html>
+
+
