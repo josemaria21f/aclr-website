@@ -30,12 +30,18 @@ body {
 
 /* Logo genérico */
 .logo {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin: 10px 10px 0px 40px; /* solo margen lateral */
 }
+
+.logo img {
+  height: 80px;         /* Cambia aquí el tamaño deseado */
+  width: auto;
+  display: block;
+}
+
+
 
 /* Contenedor general */
 .container {
@@ -64,28 +70,21 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 10px 0;              /* Barra más fina */
+  padding: 6px 0;              /* Barra más fina */
 }
 
 /* Container de la topbar: full-width pero con pequeños márgenes */
 .topbar .container {
   max-width: 100%;
   margin: 0;
+  height: 60px;
   padding: 0 8px;             /* 16px de margen lateral como en FQ */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Logo con pequeño margen izquierdo */
-.logo {
-  margin-left: 20px;            /* 8px desde el navegador */
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  white-space: nowrap;
-}
+
 
 /* Menú al extremo derecho */
 .main-nav {
@@ -168,12 +167,17 @@ nav a:last-child {
 
 .hero-inner {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+}
+
+.hero-text {
+  flex: 1 1 60%;
 }
 
 .hero-text h1 {
@@ -202,6 +206,23 @@ nav a:last-child {
   font-size: 1rem;
   padding: var(--spacing-sm) var(--spacing-md);
 }
+
+.hero-logo {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start; /* evita que el logo se reduzca para alinearse verticalmente */
+  
+}
+
+.hero-logo img {
+  height: 250px;       /* Puedes ajustar este valor */
+  max-height: none;    /* Evita que se limite automáticamente */
+  width: auto;
+  object-fit: contain;
+  margin: 0px 0px 0px 0px; /* solo margen lateral */
+}
+
 
 /* Tabs Servicios */
 
