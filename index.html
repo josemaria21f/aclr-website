@@ -8,10 +8,63 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome (reemplaza TU_KIT_ID con tu propio Kit ID) -->
-  <script src="https://kit.fontawesome.com/TU_KIT_ID.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Hoja de estilos -->
   <link rel="stylesheet" href="styles.css" />
   <style>
+
+     .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      
+      .logo-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        width: 100%;
+      }
+      .menu-toggle {
+        display: block;
+        z-index: 11;
+      }
+      .main-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        z-index: 10;
+        min-width: 200px;
+        align-items: flex-start;
+      }
+
+      .main-nav.active {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 0.5rem 0;
+        text-align: left;
+        width: 100%;
+      }
+
+      .main-nav a.btn-primary {
+        text-align: center;
+      }
+    }
+    }
     .tarjetas-servicios {
       display: flex;
       flex-wrap: wrap;
@@ -71,44 +124,73 @@
       display: block;
     }
   </style>
-  <script>
-    function mostrarTab(tabId, event) {
-      const tabs = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-button');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      buttons.forEach(btn => btn.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
+<script>
+  function mostrarTab(tabId, event) {
+    const tabs = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-button');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector('.tab-button.active')?.click();
+
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".main-nav");
+
+    if (toggle && nav) {
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation(); // para que no se cierre en el mismo clic
+        nav.classList.toggle("active");
+      });
+
+      // Esta parte cierra el menú si se hace clic en cualquier parte
+      document.addEventListener("click", function () {
+        if (nav.classList.contains("active")) {
+          nav.classList.remove("active");
+        }
+      });
     }
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelector('.tab-button.active')?.click();
-    });
-  </script>
+  });
+</script>
+
+  
+
 </head>
 <body id="top">
 <header class="topbar">
   <div class="container">
-    <div class="logo-nav">
+    
       <a href="#top" class="logo">ACLR Mobility</a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
       <nav class="main-nav">
         <a href="#servicios-toggle">Servicios</a>
         <a href="#como-trabajamos">Cómo trabajamos</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#valores">Valores</a>
+        <a href="#contacto" class="btn-primary">Contáctanos</a>
       </nav>
-    </div>
-    <a href="#contacto" class="btn-primary">Contáctanos</a>
+    
+    
   </div>
 </header>
 <section class="hero-home">
   <div class="container hero-inner">
     <div class="hero-text">
-      <h1>Impulsa tu negocio de automoción con procesos digitales sin fricción</h1>
-      <p>Soluciones integrales de compraventa, consultoría y automatización para maximizar tus ventas y optimizar tu tiempo.</p>
+      <h1>Acelera tu empresa de automoción con soluciones hechas para ti</h1>
+      <p>
+        <strong>Profesionaliza tu negocio de automoción, sin perder el control:</strong>
+        Te acompañamos en todo el proceso: compraventa, logística, digitalización y automatización. Con soluciones a tu medida, pensadas para tu equipo, tu ritmo y tus objetivos reales.
+      </p>
       <a href="#contacto" class="btn-primary">Reserva tu diagnóstico</a>
     </div>
   </div>
 </section>
+
 
 <section id="servicios-toggle" class="servicios-toggle">
   <div class="container">
@@ -176,7 +258,7 @@
       <div class="step-h">
         <div class="circle">1</div>
         <h3>Auditoría rápida</h3>
-        <p>Analizamos tus procesos actuales y detectamos ineficiencias sin interrumpir la operativa.</p>
+        <p>Analizamos tus procesos actuales y detectamos oportunidades de mejora sin interrumpir la operativa.</p>
       </div>
       <div class="step-h">
         <div class="circle">2</div>
@@ -201,7 +283,7 @@
     
     <p class="intro">
       Más de 10 años transformando empresas del sector de automoción, tanto tradicionales como digitales.
-      Sabemos cómo optimizar operaciones, automatizar flujos y diseñar modelos de venta rentables.
+      Sabemos cómo optimizar operaciones, automatizar flujos y diseñar modelos de compra, pricing y venta rentables.
     </p>
 
     <div class="bloques-nosotros">
@@ -221,7 +303,7 @@
 
     <p class="cierre">
       Aportamos visión técnica, experiencia operativa y capacidad de ejecución.
-      Porque en automoción, el cambio no es solo digital, es estructural.
+      Entendemos tus retos, hablamos tu idioma y construimos contigo soluciones reales, adaptadas a tu día a día.
     </p>
   </div>
 </section>
@@ -297,7 +379,10 @@
       </div>
     </div>
   </footer>
+
+
+
+
 </body>
 </html>
-
 
