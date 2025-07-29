@@ -27,6 +27,8 @@ body {
   line-height: 1.6;
   scroll-behavior: smooth;
 }
+
+/* Logo genérico */
 .logo {
   text-decoration: none;
   color: inherit;
@@ -34,13 +36,13 @@ body {
   font-family: var(--font-heading);
   font-size: 1.5rem;
 }
-/* Contenedor General */
+
+/* Contenedor general */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -51,41 +53,54 @@ body {
   padding-bottom: var(--spacing-md);
 }
 
-/* Topbar */
+/* ——————————————————————————————
+   Barra superior estilo FQ Source
+   —————————————————————————————— */
+
+/* Topbar más fina y full-width */
 .topbar {
   background: var(--color-bg);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: var(--spacing-xs) 0;
+  padding: 10px 0;              /* Barra más fina */
 }
 
-.logo-nav {
+/* Container de la topbar: full-width pero con pequeños márgenes */
+.topbar .container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 8px;             /* 16px de margen lateral como en FQ */
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
-  flex: 1;
+  justify-content: space-between;
 }
 
+/* Logo con pequeño margen izquierdo */
 .logo {
+  margin-left: 20px;            /* 8px desde el navegador */
   font-family: var(--font-heading);
   font-size: 1.5rem;
+  font-weight: bold;
   color: var(--color-primary);
-  font-weight: 700;
   white-space: nowrap;
 }
 
+/* Menú al extremo derecho */
 .main-nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
+  align-items: center;
+  margin-left: auto;
+  gap: 16px;                   /* menos separación entre items */
 }
-
+/* Enlaces del menú */
 .main-nav a {
+  padding: 0 6px;              /* un poquito de “click area” */
+  margin-right: 0;            /* anula posibles márgenes heredados */
   text-decoration: none;
-  font-weight: 500;
   color: var(--color-text);
+  font-weight: 500;
   font-size: 1rem;
   transition: color 0.2s ease;
 }
@@ -93,7 +108,26 @@ body {
   color: var(--color-primary);
 }
 
-/* Nav */
+/* Botón Contáctanos con pequeño margen derecho */
+.main-nav .btn-primary {
+  margin-left: 8px;           /* separación mínima antes del botón */
+  margin-right: 8px;          /* 8px al borde derecho */
+  padding: 0.5em 1em;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.main-nav .btn-primary:hover {
+  background-color: #33aaff;
+}
+
+/* ——————————————————————————————
+   Fin barra superior
+   —————————————————————————————— */
+
+/* Nav global (compatibilidad) */
 nav a {
   margin-right: var(--spacing-lg);
   text-decoration: none;
@@ -109,7 +143,7 @@ nav a:last-child {
   margin-right: 0;
 }
 
-/* Botón Principal */
+/* Botón primario general */
 .btn-primary {
   display: inline-block;
   background-color: var(--color-primary);
@@ -125,29 +159,48 @@ nav a:last-child {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+
 /* Hero */
 .hero-home {
   background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
   padding: var(--spacing-lg) 0;
 }
+
 .hero-inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--spacing-md);
   text-align: left;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
-.hero-home h1 {
+
+.hero-text h1 {
   font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 700;
+  color: var(--color-primary-dark);
   max-width: 700px;
-  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
 }
-.hero-home p {
+
+.hero-text p {
   font-size: 1.1rem;
   color: var(--color-text-light);
-  max-width: 600px;
+  max-width: 650px;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-text p strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.hero-text .btn-primary {
+  font-size: 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 /* Tabs Servicios */
@@ -290,7 +343,7 @@ section#como-trabajamos {
 }
 
 .steps-horizontal {
-  background: var(--color-bg-alt);
+  background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
   padding: var(--spacing-lg) 0;
   display: block; /* Asegura disposición vertical */
 }
@@ -657,30 +710,159 @@ section#contacto {
 }
 
 /* Responsive */
+.menu-toggle {
+  margin-left: auto;
+}
+
+
 @media (max-width: 768px) {
-  .container, .hero-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-  }
-  nav {
-    flex-wrap: wrap;
-  }
-  .servicio-grid {
-    grid-template-columns: 1fr;
-  }
-  .servicio-header {
-    padding-bottom: var(--spacing-sm);
-  }
-  .sobre-container {
-    flex-direction: column;
-  }
-  .valores-grid {
-    grid-template-columns: 1fr;
-  }
+  .container,
+  .hero-inner,
+  .contacto-container,
   .footer-container {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  .topbar .container {
+    flex-direction: row;            /* fila, no columna */
+    justify-content: space-between; /* extiende extremos */
+    align-items: center;
+    padding: 4px 8px;               /* ajusta según necesites */
+  }
+.logo-nav {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: var(--spacing-md);
+}
+
+
+
+  .main-nav.active {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 0.5rem 0;
+  }
+
+  .main-nav a.btn-primary {
+    margin-top: var(--spacing-sm);
+    align-self: center;
+    width: 100%;
+    text-align: center;
+  }
+
+
+  .hero-text h1 {
+    font-size: 1.8rem;
     text-align: left;
   }
+
+  .hero-text p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  .tarjetas-servicios {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+  justify-items: center;
+  } 
+
+
+  .tarjeta {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .step-h {
+    margin-bottom: var(--spacing-md);
+    max-width: 90%;
+  }
+
+  .valores-grid,
+  .bloques-nosotros {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-info {
+    text-align: left;
+    margin-top: var(--spacing-sm);
+  }
+ section#contacto.contacto {
+    padding: var(--spacing-sm) 0;   /* antes era var(--spacing-lg) */
+  }
+  /* También ajusta el gap interno si lo hubiera */
+  .contacto-container {
+    gap: var(--spacing-sm);         /* antes tal vez tenía var(--spacing-md) o más */
+  }
+  /* Si tu título <h2> tiene margen extra, reduce su margin-bottom */
+  .contacto-info h2 {
+    margin-bottom: var(--spacing-xs);
+  }
 }
+  .formulario-contacto {
+    width: 100%;
+  }
+
+  .cta-final h2,
+  .cta-final p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 1) Forzar columna sin gap grande */
+  .contacto-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;          /* eliminamos gap entre info y formulario */
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* 2) Márgen mínimo entre info y formulario */
+  .formulario-contacto {
+    margin-top: 8px !important; /* solo 8px entre la sección info y el form */
+    width: 100%;
+  }
+
+  /* 3) Reducir márgenes en párrafos dentro de .contacto-info */
+  .contacto-info p {
+    margin: 0 0 8px 0 !important;  /* 8px abajo */
+  }
+}
+
