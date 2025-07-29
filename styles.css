@@ -36,7 +36,7 @@ body {
 }
 
 .logo img {
-  height: 10px;         /* Cambia aquí el tamaño deseado */
+  height: 80px;         /* Cambia aquí el tamaño deseado */
   width: auto;
   display: block;
 }
