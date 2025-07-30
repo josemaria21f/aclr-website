@@ -798,7 +798,9 @@ section#contacto {
     font-size: 1rem;
     text-align: left;
   }
-
+.hero-logo {
+  display: none;
+}
   .tabs {
     flex-wrap: wrap;
     justify-content: center;
