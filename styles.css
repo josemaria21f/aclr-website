@@ -32,7 +32,7 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  margin: 10px 10px 0px 40px; /* solo margen lateral */
+  margin: 5px 10px 0px 40px; /* solo margen lateral */
 }
 
 .logo img {
@@ -274,6 +274,15 @@ section#servicios-toggle {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Centrar 2 tarjetas en la pestaña de Consultoría */
+#consultoria .tarjetas-servicios {
+  grid-template-columns: repeat(2, minmax(260px, 300px));
+  justify-content: center;     /* centra el conjunto de columnas */
+  justify-items: center;       /* centra cada tarjeta dentro de su columna */
+}
+
+
 
 .tarjeta-contenido {
   text-align: center;
@@ -801,6 +810,7 @@ section#contacto {
 .hero-logo {
   display: none;
 }
+
   .tabs {
     flex-wrap: wrap;
     justify-content: center;
