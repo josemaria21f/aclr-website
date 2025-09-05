@@ -875,7 +875,7 @@ section#contacto {
   .cta-final p {
     text-align: center;
   }
-}
+
 
 @media (max-width: 768px) {
   /* 1) Forzar columna sin gap grande */
@@ -899,3 +899,8 @@ section#contacto {
   }
 }
 
+@media (max-width: 768px) {
+  #consultoria .tarjetas-servicios {
+    grid-template-columns: 1fr; /* 1 tarjeta por fila */
+  }
+}
