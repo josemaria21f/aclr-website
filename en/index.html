@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACLR Mobility</title>
+  <link rel="alternate" hreflang="es" href="https://aclrmobility.com/" />
+  <link rel="alternate" hreflang="en" href="https://aclrmobility.com/en/" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (reemplaza TU_KIT_ID con tu propio Kit ID) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+
+  <style>
+
+     .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      
+      .logo-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        width: 100%;
+      }
+      .menu-toggle {
+        display: block;
+        z-index: 11;
+      }
+      .main-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        z-index: 10;
+        min-width: 200px;
+        align-items: flex-start;
+      }
+
+      .main-nav.active {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 0.5rem 0;
+        text-align: left;
+        width: 100%;
+      }
+
+      .main-nav a.btn-primary {
+        text-align: center;
+      }
+    }
+    
+    .tarjetas-servicios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .tarjeta {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 320px;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta:hover {
+      transform: translateY(-5px);
+    }
+    .tarjeta img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .tarjeta h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin: 1rem;
+    }
+    .tarjeta p {
+      font-size: 1rem;
+      color: #555;
+      padding: 0 1rem 1.5rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .tab-button {
+      background-color: #eee;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .tab-button.active {
+      background-color: #0066cc;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+<script>
+  function mostrarTab(tabId, event) {
+    const tabs = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-button');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector('.tab-button.active')?.click();
+
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".main-nav");
+
+    if (toggle && nav) {
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation(); // para que no se cierre en el mismo clic
+        nav.classList.toggle("active");
+      });
+
+      // Esta parte cierra el menú si se hace clic en cualquier parte
+      document.addEventListener("click", function () {
+        if (nav.classList.contains("active")) {
+          nav.classList.remove("active");
+        }
+      });
+    }
+  });
+</script>
+
+  
+
+</head>
+<body id="top">
+<header class="topbar">
+  <div class="container">
+        <!-- Selector de idioma al lado del logo -->
+    <div class="menu-lang beside-logo">
+      <a href="/">ES</a> | <span class="active">EN</span>
+    </div>
+    
+      <a href="#top" class="logo">
+        <img src="../logo4 sin mob.png" alt="ACLR Mobility" />
+    </a>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="main-nav">
+        <a href="#servicios-toggle">Services</a>
+        <a href="#como-trabajamos">How we work</a>
+        <a href="#nosotros">About us</a>
+        <a href="#valores">Our values</a>
+        <a href="#contacto" class="btn-primary">Contact us</a>
+      </nav>
+    
+    
+  </div>
+</header>
+<section class="hero-home">
+  <div class="container hero-inner two-columns">
+
+    <div class="hero-text">
+      <h1>Accelerate your automotive business with tailored solutions</h1>
+      <p>
+        <strong>Scale your automotive business without losing control:</strong>
+        We support you in the entire process of business growth.
+        Solutions designed for your team, your pace, and your real goals.
+      </p>
+      <a href="#contacto" class="btn-primary">Contact us</a>
+    </div>
+
+    <div class="hero-logo">
+      <img src="../logo4 con mob.png" alt="ACLR Mobility logo" />
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section id="servicios-toggle" class="servicios-toggle">
+  <div class="container">
+    <h2 class="titulo-servicios">Our Services</h2>
+
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        <button class="tab-button active" onclick="mostrarTab('consultoria', event)">Consulting</button>
+        <button class="tab-button" onclick="mostrarTab('brokerage', event)">Brokerage</button>
+      </div>
+    </div>
+
+    <div id="brokerage" class="tab-content active">
+      <div class="tarjetas-servicios">
+        <div class="tarjeta">
+          <img src="compra.jpg" alt="Compra">
+          <h3>Sourcing</h3>
+          <p>We bring you the best opportunities to supply your business, from national or European sources. We work with trusted suppliers and 100% inspected vehicles.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="venta.jpg" alt="Venta">
+          <h3>Sales</h3>
+          <p>We find national and international clients for your stock, improving rotation and increasing revenue. Plus, we handle the entire process for you.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="logística.png" alt="Logística">
+          <h3>Logistics</h3>
+          <p>We take care of every detail: national and international transport, document management and real-time tracking. So your vehicles arrive on time and hassle-free.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="consultoria" class="tab-content">
+      <div class="tarjetas-servicios">
+        <div class="tarjeta">
+          <img src="consultoria estrategica.jpg" alt="Consultoría">
+          <h3>Strategic Consulting</h3>
+          <p>We boost your company with new business opportunities, optimize costs and revenue, and refine your operating models—aligning every step with your commercial strategy.</p>
+        </div>
+        <div class="tarjeta">
+          <img src="automatización.jpeg" alt="Automatización">
+          <h3>Digitalization</h3>
+          <p>We develop digital solutions that integrate your workflows, automate tasks and eliminate duplicated work, reducing errors and driving your company's growth.</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="como-trabajamos" class="steps-horizontal">
+  <div class="section-header">
+    <h2>How we work</h2>
+    <p class="intro">Our methodology combines analysis, technology and close support to deliver real, sustainable improvements from day one.</p>
+  </div>
+
+  <div class="timeline-wrapper">
+    <div class="timeline">
+      <div class="step-h">
+        <div class="circle">1</div>
+        <h3>Quick Audit</h3>
+        <p>We analyze your current processes and detect opportunities for improvement without interrupting operations.</p>
+      </div>
+      <div class="step-h">
+        <div class="circle">2</div>
+        <h3>Practical Automation</h3>
+        <p>We digitalize key flows: sourcing, pricing, tracking and reporting with accessible tools.</p>
+      </div>
+      <div class="step-h">
+        <div class="circle">3</div>
+        <h3>Follow-up and Evolution</h3>
+        <p>We support you after implementation to ensure measurable and scalable improvements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="nosotros" class="nosotros-final">
+  <div class="container">
+    <h2>Experts in automotive and digital processes</h2>
+    
+    <p class="intro">
+      Over 10 years transforming companies in the automotive sector, both traditional and digital.
+      We know how to optimize operations, automate workflows and design profitable models for purchasing, pricing and sales.
+    </p>
+
+    <div class="bloques-nosotros">
+      <div class="bloque">
+        <h4>Effective Digitalization</h4>
+        <p>We automate manual processes and improve efficiency without disrupting your daily operations…</p>
+      </div>
+      <div class="bloque">
+        <h4>Sourcing & Strategy</h4>
+        <p>We optimize costs, margins and suppliers, applying solid financial control models…</p>
+      </div>
+      <div class="bloque">
+        <h4>Modern Sales Models</h4>
+        <p>From pricing to commercial approach, we adapt your business with models designed for today’s market…</p>
+      </div>
+    </div>
+
+    <p class="cierre">
+      We bring technical vision, operational experience and execution capacity.
+      We understand your challenges, speak your language, and build real solutions with you—adapted to your daily business.
+    </p>
+  </div>
+</section>
+
+
+
+  <section id="valores" class="valores">
+  <div class="container">
+    <h2>Our Values</h2>
+    <p class="intro">
+      We know how hard it is to trust an external partner. That’s why our values aren’t empty promises: they’re practices we apply with every client, from day one.
+    </p>
+    <div class="valores-grid">
+      <div class="valor">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <h4>Genuine Commitment</h4>
+        <p>We work as part of your team: close, direct and always results-oriented.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-lightbulb"></i></div>
+        <h4>Practical Innovation</h4>
+        <p>We only apply technology that makes a real impact. No smoke: just solutions that work.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-trophy"></i></div>
+        <h4>Success-oriented</h4>
+        <p>Every step we take is aligned with your goals. We measure, adjust, and measure again.</p>
+      </div>
+      <div class="valor">
+        <div class="icon"><i class="fas fa-eye"></i></div>
+        <h4>Total Transparency</h4>
+        <p>Clear reports, no fine print. You know exactly what’s being done and why, at all times.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contacto">
+  <div class="contacto-container">
+    
+    <div class="contacto-info">
+      <h2>Contact us</h2>
+      <p>Want to know how we can help? Write to us and we’ll reply within 24 hours.</p>
+      
+      <div class="contacto-datos">
+        <div class="dato">
+          <span class="icon">📧</span>
+          <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="formulario-contacto" action="https://formspree.io/f/abcd1234" method="POST">
+      <input type="text" name="nombre" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email address" required />
+      <textarea name="mensaje" placeholder="How can we help you?" required></textarea>
+      <button type="submit" class="btn-primary">🚀 Send Message</button>
+    </form>
+
+  </div>
+</section>
+
+
+  <section class="cta-final">
+    <div class="cta-container">
+      <h2>Ready to accelerate your business?</h2>
+      <p>Boost your sales, digitalize your management, and improve your results with ACLR Mobility.</p>
+      <a href="#contacto" class="btn-primary">Book your consultation</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">ACLR Mobility</div>
+      <nav class="footer-nav">
+        <a href="#servicios">Services</a>
+        <a href="#nosotros">About us</a>
+        <a href="#valores">Our values</a>
+        <a href="#contacto">Contact us</a>
+      </nav>
+      <div class="footer-info">
+        <p>&copy; 2025 ACLR Mobility. All rights reserved.</p>
+        <p>📧 <a href="mailto:info@aclrmobility.com">info@aclrmobility.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+</body>
+</html>
+
