@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACLR Mobility</title>
-
+  <link rel="alternate" hreflang="es" href="https://aclrmobility.com/" />
+  <link rel="alternate" hreflang="en" href="https://aclrmobility.com/en/" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome (reemplaza TU_KIT_ID con tu propio Kit ID) -->
@@ -66,7 +67,7 @@
         text-align: center;
       }
     }
-    }
+    
     .tarjetas-servicios {
       display: flex;
       flex-wrap: wrap;
@@ -164,6 +165,10 @@
 <body id="top">
 <header class="topbar">
   <div class="container">
+        <!-- Selector de idioma al lado del logo -->
+    <div class="menu-lang next-to-logo">
+      <span class="active">ES</span> | <a href="/en/">EN</a>
+    </div>
     
       <a href="#top" class="logo">
         <img src="logo4 sin mob.png" alt="ACLR Mobility" />
@@ -367,7 +372,7 @@
       </div>
     </div>
 
-    <form class="formulario-contacto" action="https://formspree.io/f/mzzakqpe" method="POST">
+    <form class="formulario-contacto" action="https://formspree.io/f/abcd1234" method="POST">
       <input type="text" name="nombre" placeholder="Tu nombre" required />
       <input type="email" name="email" placeholder="Tu correo electrónico" required />
       <textarea name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
@@ -406,5 +411,4 @@
 
 </body>
 </html>
-
 
