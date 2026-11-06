@@ -474,7 +474,7 @@
     return { id: r.referencia || String(r.id), marca: r.marca || '', modelo: r.modelo || '', version: r.version || '', carroceria: r.carroceria || '',
       anio: r.anio, km: Number(r.km) || 0, combustible: r.combustible || '', cambio: r.cambio || '', marchas: r.marchas || null, cv: r.cv != null ? Number(r.cv) : null,
       etiqueta: r.etiqueta || '', color: r.color || '', puertas: r.puertas, plazas: r.plazas, co2: r.co2 || null, consumo: null,
-      estado: r.estado || 'Ocasión', origen: r.origen || 'ES', ubicacion: r.ubicacion || 'Madrid', disponibilidad: r.disponibilidad || 'Disponible', vendido: r.vendido || null,
+      estado: r.estado || 'Ocasión', origen: r.origen || 'ES', ubicacion: r.ubicacion || 'Madrid', disponibilidad: r.disponibilidad || 'Disponible',
       iva: r.iva || 'general', neto: r.neto != null ? Number(r.neto) : null, venta: r.venta != null ? Number(r.venta) : null, pvp: r.pvp != null ? Number(r.pvp) : null,
       garantia: GARANTIA, canales: Array.isArray(r.canales) && r.canales.length ? r.canales : ['b2b', 'b2c'], lote: null, propietarios: 1,
       procedencia: r.procedencia || '', equipamiento: Array.isArray(r.equipamiento) ? r.equipamiento : [], texto: r.texto || '', destacado: !!r.destacado,
@@ -488,8 +488,7 @@
   }
 
   const IVA = 0.21;
-  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const vendidoEn = (c) => { if (!c.vendido) return 'Vendido'; const [y, m] = c.vendido.split('-'); return 'Vendido en ' + MESES[Number(m) - 1] + ' de ' + y; };
+  const vendidoEn = () => 'Vendido';   // sin fecha: en la web no se dice cuándo se vendió
   const isSold = (c) => c.disponibilidad === 'Vendido';
   const EMAIL = 'info@aclrmobility.com';
   const ORDER = { combustible: ['Gasolina', 'Diésel', 'Híbrido', 'Híbrido enchufable', 'Eléctrico', 'GLP'], etiqueta: ['0', 'ECO', 'C', 'B'], estado: ['0 km', 'Seminuevo', 'Ocasión'], disponibilidad: ['Disponible', 'En tránsito', 'Reservado', 'Vendido'], origen: ['ES', 'FR', 'DE'] };
