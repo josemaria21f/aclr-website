@@ -376,12 +376,6 @@
         <input type="number" id="pMax" placeholder="Máx €" min="0" step="500" inputmode="numeric">
       </div>
     </div>
-    <div class="f-group b2c-only">
-      <h3>Cuota mensual máxima</h3>
-      <input type="range" id="cuotaMax" min="150" max="700" step="25" value="700">
-      <output id="cuotaMaxOut">Sin límite</output>
-      <span class="hint">Estimación a 72 meses sin entrada</span>
-    </div>
     <div class="f-group"><h3>Marca</h3><div class="checks" id="fMarca"></div></div>
     <div class="f-group"><h3>Estado</h3><div class="checks" id="fEstado"></div></div>
     <div class="f-group"><h3>Carrocería</h3><div class="checks" id="fCarroceria"></div></div>
@@ -619,7 +613,6 @@
     }
   ];
 
-  const FIN = { tin: 7.5, meses: 72 }; // supuestos de la cuota orientativa
   const IVA = 0.21;
   const MARGEN_PARTICULAR = 3500; // se suma al precio de venta (con IVA) para particulares
   STOCK.forEach((c) => { if (c.venta) { c.neto = c.venta / (1 + IVA); c.pvp = c.venta + MARGEN_PARTICULAR; } });
@@ -630,7 +623,7 @@
   // ---------- Estado ----------
   const state = {
     mode: 'b2b', q: '', sort: 'rel', view: 'grid',
-    f: { marca: new Set(), carroceria: new Set(), combustible: new Set(), cambio: new Set(), etiqueta: new Set(), estado: new Set(), disponibilidad: new Set(), origen: new Set(), pMin: null, pMax: null, kmMax: 80000, anioMin: null, cuotaMax: 700, ivaDed: false },
+    f: { marca: new Set(), carroceria: new Set(), combustible: new Set(), cambio: new Set(), etiqueta: new Set(), estado: new Set(), disponibilidad: new Set(), origen: new Set(), pMin: null, pMax: null, kmMax: 80000, anioMin: null, ivaDed: false },
     lote: new Set(), favs: new Set()
   };
 
@@ -639,12 +632,6 @@
   const fmtEur = (n) => fmtNum(n) + '\u00a0€';
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  function cuota(pvp, entrada, meses, tin) {
-    entrada = entrada || 0; meses = meses || FIN.meses; tin = tin ?? FIN.tin;
-    const P = Math.max(0, pvp - entrada); const r = tin / 100 / 12;
-    if (P <= 0) return 0; if (r === 0) return P / meses;
-    return P * r / (1 - Math.pow(1 + r, -meses));
-  }
   const precio = (c) => state.mode === 'b2b' ? c.neto : c.pvp;
   const visible = (c) => c.canales.includes(state.mode);
   const byId = (id) => STOCK.find((c) => c.id === id);
@@ -693,7 +680,6 @@
     sel.innerHTML = '<option value="">Cualquiera</option>' + anios.map((a) => '<option value="' + a + '"' + (cur === a ? ' selected' : '') + '>' + a + '</option>').join('');
     $('#priceLbl').textContent = state.mode === 'b2b' ? 'Precio neto (sin IVA)' : 'Precio (IVA incluido)';
     $('#kmMaxOut').textContent = state.f.kmMax >= 80000 ? 'Sin límite' : 'Hasta ' + fmtNum(state.f.kmMax) + ' km';
-    $('#cuotaMaxOut').textContent = state.f.cuotaMax >= 700 ? 'Sin límite' : 'Hasta ' + fmtEur(state.f.cuotaMax) + '/mes';
   }
   function filtered() {
     const f = state.f; const q = state.q.trim().toLowerCase();
@@ -708,7 +694,7 @@
         if (f.disponibilidad.size && !f.disponibilidad.has(c.disponibilidad)) return false;
         if (f.origen.size && !f.origen.has(c.origen)) return false;
         if (f.ivaDed && c.iva !== 'general') return false;
-      } else if (f.cuotaMax < 700 && cuota(c.pvp) > f.cuotaMax) return false;
+      }
       const p = precio(c);
       if (f.pMin !== null && p < f.pMin) return false;
       if (f.pMax !== null && p > f.pMax) return false;
@@ -733,7 +719,7 @@
   function activeFilterCount() {
     const f = state.f; let n = 0;
     ['marca', 'carroceria', 'combustible', 'cambio', 'etiqueta', 'estado'].forEach((k) => { n += f[k].size; });
-    if (state.mode === 'b2b') { n += f.disponibilidad.size + f.origen.size + (f.ivaDed ? 1 : 0); } else if (f.cuotaMax < 700) n++;
+    if (state.mode === 'b2b') { n += f.disponibilidad.size + f.origen.size + (f.ivaDed ? 1 : 0); }
     if (f.pMin !== null || f.pMax !== null) n++; if (f.kmMax < 80000) n++; if (f.anioMin) n++;
     return n;
   }
@@ -776,7 +762,7 @@
       const sub = c.iva === 'general' ? fmtEur(c.venta || c.neto * (1 + IVA)) + ' con IVA' : 'Precio final · REBU';
       return '<div class="price"><div class="main num">' + fmtEur(c.neto) + '<small class="num">' + (c.iva === 'general' ? 'Neto sin IVA · ' + sub : 'Régimen de margen (REBU)') + '</small></div><div class="side">' + (c.lote ? 'Lote ' + esc(c.lote) : 'Unidad suelta') + '</div></div>';
     }
-    return '<div class="price"><div class="main num">' + fmtEur(c.pvp) + '<small class="num">IVA incluido · desde ' + fmtEur(Math.round(cuota(c.pvp))) + '/mes*</small></div></div>';
+    return '<div class="price"><div class="main num">' + fmtEur(c.pvp) + '<small>Precio al contado · IVA incluido</small></div></div>';
   }
   function cardHTML(c) {
     const b2b = state.mode === 'b2b';
@@ -803,11 +789,11 @@
     const b2b = state.mode === 'b2b';
     const head = b2b
       ? '<tr><th>Ref.</th><th>Vehículo</th><th>Año</th><th class="r">Km</th><th>Comb.</th><th>Cambio</th><th>Etiq.</th><th>Origen</th><th>Ubicación</th><th>IVA</th><th class="r">Precio neto</th><th>Estado</th><th></th></tr>'
-      : '<tr><th>Ref.</th><th>Vehículo</th><th>Año</th><th class="r">Km</th><th>Comb.</th><th>Cambio</th><th>Etiq.</th><th>Garantía</th><th class="r">Precio</th><th class="r">Cuota*</th><th></th></tr>';
+      : '<tr><th>Ref.</th><th>Vehículo</th><th>Año</th><th class="r">Km</th><th>Comb.</th><th>Cambio</th><th>Etiq.</th><th>Garantía</th><th class="r">Precio</th><th></th></tr>';
     const rows = list.map((c) => {
       const common = '<td class="num">' + c.id + '</td><td><span class="veh">' + esc(c.marca + ' ' + c.modelo) + '<small>' + esc(c.version) + '</small></span></td><td>' + c.anio + '</td><td class="r num">' + fmtNum(c.km) + '</td><td>' + esc(c.combustible) + '</td><td>' + esc(c.cambio) + '</td><td>' + etq(c.etiqueta) + '</td>';
       if (b2b) return '<tr>' + common + '<td>' + c.origen + '</td><td>' + esc(c.ubicacion) + '</td><td>' + (c.iva === 'general' ? 'Deducible' : 'REBU') + '</td><td class="r num"><b>' + fmtEur(c.neto) + '</b></td><td>' + dispPill(c) + '</td><td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button> <button type="button" class="rowbtn" data-act="toggle" data-id="' + c.id + '"' + (c.disponibilidad === 'Reservado' ? ' disabled' : '') + '>' + (state.lote.has(c.id) ? 'Quitar' : '+ Lote') + '</button></td></tr>';
-      return '<tr>' + common + '<td>' + esc(c.garantia.split(' ·')[0]) + '</td><td class="r num"><b>' + fmtEur(c.pvp) + '</b></td><td class="r num">' + fmtEur(Math.round(cuota(c.pvp))) + '/mes</td><td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button> <button type="button" class="rowbtn" data-act="ask" data-id="' + c.id + '">Información</button></td></tr>';
+      return '<tr>' + common + '<td>' + esc(c.garantia.split(' ·')[0]) + '</td><td class="r num"><b>' + fmtEur(c.pvp) + '</b></td><td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button> <button type="button" class="rowbtn" data-act="ask" data-id="' + c.id + '">Información</button></td></tr>';
     }).join('');
     return '<div class="tablewrap"><table><thead>' + head + '</thead><tbody>' + rows + '</tbody></table></div>';
   }
@@ -840,12 +826,12 @@
     b2c: {
       title: 'Coches seminuevos y de ocasión',
       text: 'Procedentes de renting y de un solo titular. Compramos directamente a las flotas y te trasladamos el precio sin intermediarios.',
-      terms: ['Precio final con IVA', 'Transferencia y garantía incluidas', 'Financiación disponible', 'Entrega en Madrid o a domicilio'],
+      terms: ['Precio al contado, IVA incluido', 'Transferencia y garantía incluidas', 'Entrega en Madrid o a domicilio'],
       procTitle: 'Cómo comprar tu coche',
       procLead: 'Sin concesionario de por medio: eliges, reservas y te lo entregamos con todo en regla.',
       steps: [
         ['Información y visita', 'Solicita información desde la ficha del coche. Te lo enseñamos en Madrid y lo reservas con una señal reembolsable si cambias de idea.'],
-        ['Documentación y financiación', 'Nos encargamos de la transferencia, el informe de la DGT y, si lo necesitas, de tramitar la financiación con el banco.'],
+        ['Documentación', 'Nos encargamos de la transferencia y del informe de la DGT. El pago es al contado, por transferencia.'],
         ['Entrega', 'Recoges el coche en Madrid o te lo llevamos a casa. Todos los vehículos se entregan con garantía.']
       ],
       drawer: 'Coches guardados', drawerLbl: 'Guardados'
@@ -917,16 +903,12 @@
         kv('Referencia', c.id) + kv('Propietarios', c.propietarios) + kv('Ubicación', esc(c.ubicacion)) + kv('Origen', LABEL[c.origen] + (c.origen !== 'ES' ? ' (importación)' : '')) + kv('Lote', c.lote ? esc(c.lote) : 'Unidad suelta') + kv('Régimen IVA', c.iva === 'general' ? 'General · IVA deducible' : 'REBU · margen, IVA no deducible') + kv('Disponibilidad', dispPill(c)) +
         '</div></div>';
     } else {
-      pro = '<div class="section"><h3>Financiación orientativa</h3><div class="fin">' +
-        '<label>Entrada <input type="number" id="finEntrada" min="0" step="500" value="0" inputmode="numeric"></label>' +
-        '<label>Plazo <select id="finMeses"><option value="48">48 meses</option><option value="60">60 meses</option><option value="72" selected>72 meses</option><option value="84">84 meses</option></select></label>' +
-        '<div class="out"><b class="num" id="finOut"></b><small>al mes · ' + FIN.tin + ' % TIN · sujeto a aprobación · sin comisiones de apertura incluidas en el cálculo</small></div></div></div>' +
-        '<div class="section"><h3>Qué incluye</h3><div class="tags"><span>Garantía ' + esc(c.garantia) + '</span><span>Transferencia a tu nombre</span><span>Entrega en Madrid</span>' + (c.procedencia ? '<span>' + esc(c.procedencia) + '</span>' : '') + '</div></div>';
+      pro = '<div class="section"><h3>Qué incluye</h3><div class="tags"><span>Garantía ' + esc(c.garantia) + '</span><span>Transferencia a tu nombre</span><span>Entrega en Madrid</span>' + (c.procedencia ? '<span>' + esc(c.procedencia) + '</span>' : '') + '</div></div>';
     }
     const equip = '<div class="section"><h3>Equipamiento de serie de la versión</h3><div class="tags">' + c.equipamiento.map((e) => '<span>' + esc(e) + '</span>').join('') + '</div></div>';
     const priceBox = b2b
       ? '<div class="pricebox"><div class="main num">' + fmtEur(c.neto) + '</div><div class="sub">' + (c.iva === 'general' ? 'Precio neto, sin IVA · <b class="num">' + fmtEur(c.venta || c.neto * (1 + IVA)) + '</b> con IVA 21 % deducible' : 'Precio final en régimen de margen (REBU), IVA no deducible') + '</div><div class="sub">Transporte a tu campa presupuestado aparte · ' + (c.lote ? 'forma parte del lote ' + esc(c.lote) : 'unidad suelta') + '</div></div>'
-      : '<div class="pricebox"><div class="main num">' + fmtEur(c.pvp) + '</div><div class="sub">IVA y transferencia incluidos · financiado desde <b class="num">' + fmtEur(Math.round(cuota(c.pvp))) + '/mes</b>*</div>' + (reservado ? '<div class="sub" style="color:var(--bad)">Reservado: puedes apuntarte a la lista de espera.</div>' : '') + '</div>';
+      : '<div class="pricebox"><div class="main num">' + fmtEur(c.pvp) + '</div><div class="sub">Precio al contado · IVA y transferencia incluidos</div>' + (reservado ? '<div class="sub" style="color:var(--bad)">Reservado: puedes apuntarte a la lista de espera.</div>' : '') + '</div>';
     const actions = b2b
       ? '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="toggle" data-id="' + c.id + '"' + (reservado ? ' disabled' : '') + '>' + (sel ? 'Quitar del lote' : 'Añadir al lote') + '</button><button type="button" class="btn btn-outline" data-act="ask" data-id="' + c.id + '">Solicitar oferta</button></div>'
       : '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="ask" data-id="' + c.id + '">' + (reservado ? 'Lista de espera' : 'Solicitar información') + '</button>' + (reservado ? '' : '<button type="button" class="btn btn-outline" data-act="reserve" data-id="' + c.id + '">Reservar</button>') + '<button type="button" class="btn btn-ghost" data-act="toggle" data-id="' + c.id + '">' + (sel ? 'Quitar de guardados' : 'Guardar') + '</button></div>';
@@ -936,10 +918,6 @@
       '<div style="display:grid;gap:16px;min-width:0;align-content:start">' + priceBox + actions + '</div></div>' +
       '<div class="section"><h3>Características</h3><div class="kv">' + specs + '</div></div>' + pro + equip + '</div>';
     const dlg = $('#dlgDetail'); if (!dlg.open) dlg.showModal(); dlg.scrollTop = 0;
-    if (!b2b) {
-      const upd = () => { const e = Number($('#finEntrada').value) || 0; const m = Number($('#finMeses').value); $('#finOut').textContent = fmtEur(Math.round(cuota(c.pvp, e, m))); };
-      $('#finEntrada').addEventListener('input', upd); $('#finMeses').addEventListener('change', upd); upd();
-    }
   }
 
   // ---------- Contacto ----------
@@ -979,7 +957,7 @@
     const line = c.id + ' · ' + c.marca + ' ' + c.modelo + ' ' + c.version + ' · ' + c.anio + ' · ' + fmtNum(c.km) + ' km · ' + (b2b ? fmtEur(c.neto) + ' neto' : fmtEur(c.pvp));
     if (b2b) openContact({ title: 'Solicitar oferta', subject: 'Oferta ' + c.id + ' · ' + c.marca + ' ' + c.modelo, body: 'Me interesa la siguiente unidad:\n' + line + '\n\nNecesito precio en firme, plazo de entrega y coste de transporte a mi campa.' });
     else if (reserve) openContact({ title: 'Reservar ' + c.marca + ' ' + c.modelo, subject: 'Reserva ' + c.id + ' · ' + c.marca + ' ' + c.modelo, body: 'Quiero reservar este coche:\n' + line + '\n\nIndicadme cómo hacer la señal y cuándo puedo verlo.' });
-    else openContact({ title: (c.disponibilidad === 'Reservado' ? 'Lista de espera' : 'Solicitar información'), subject: 'Consulta ' + c.id + ' · ' + c.marca + ' ' + c.modelo, body: 'Me interesa este coche:\n' + line + '\n\n' + (c.disponibilidad === 'Reservado' ? 'Está reservado: avisadme si vuelve a estar disponible o si tenéis uno similar.' : 'Me gustaría verlo y conocer las opciones de financiación.') });
+    else openContact({ title: (c.disponibilidad === 'Reservado' ? 'Lista de espera' : 'Solicitar información'), subject: 'Consulta ' + c.id + ' · ' + c.marca + ' ' + c.modelo, body: 'Me interesa este coche:\n' + line + '\n\n' + (c.disponibilidad === 'Reservado' ? 'Está reservado: avisadme si vuelve a estar disponible o si tenéis uno similar.' : 'Me gustaría verlo y conocer la disponibilidad.') });
   }
   function askSelection() {
     const b2b = state.mode === 'b2b'; const n = selection().size; if (!n) return;
@@ -996,8 +974,8 @@
   }
   function clearFilters() {
     const f = state.f; ['marca', 'carroceria', 'combustible', 'cambio', 'etiqueta', 'estado', 'disponibilidad', 'origen'].forEach((k) => f[k].clear());
-    f.pMin = f.pMax = null; f.kmMax = 80000; f.anioMin = null; f.cuotaMax = 700; f.ivaDed = false; state.q = '';
-    $('#pMin').value = ''; $('#pMax').value = ''; $('#kmMax').value = 80000; $('#cuotaMax').value = 700; $('#ivaDed').checked = false; $('#q').value = '';
+    f.pMin = f.pMax = null; f.kmMax = 80000; f.anioMin = null; f.ivaDed = false; state.q = '';
+    $('#pMin').value = ''; $('#pMax').value = ''; $('#kmMax').value = 80000; $('#ivaDed').checked = false; $('#q').value = '';
     renderFilterUI(); render(); renderQuick();
   }
 
@@ -1027,7 +1005,6 @@
   $('#pMin').addEventListener('input', (ev) => { state.f.pMin = ev.target.value === '' ? null : Number(ev.target.value); render(); });
   $('#pMax').addEventListener('input', (ev) => { state.f.pMax = ev.target.value === '' ? null : Number(ev.target.value); render(); renderQuick(); });
   $('#kmMax').addEventListener('input', (ev) => { state.f.kmMax = Number(ev.target.value); $('#kmMaxOut').textContent = state.f.kmMax >= 80000 ? 'Sin límite' : 'Hasta ' + fmtNum(state.f.kmMax) + ' km'; render(); });
-  $('#cuotaMax').addEventListener('input', (ev) => { state.f.cuotaMax = Number(ev.target.value); $('#cuotaMaxOut').textContent = state.f.cuotaMax >= 700 ? 'Sin límite' : 'Hasta ' + fmtEur(state.f.cuotaMax) + '/mes'; render(); });
   $('#anioMin').addEventListener('change', (ev) => { state.f.anioMin = ev.target.value ? Number(ev.target.value) : null; render(); });
   $('#ivaDed').addEventListener('change', (ev) => { state.f.ivaDed = ev.target.checked; render(); });
   $('#q').addEventListener('input', (ev) => { state.q = ev.target.value; render(); });
