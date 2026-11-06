@@ -464,417 +464,30 @@
   'use strict';
 
   // ---------- Stock ----------
-  // Un objeto por vehículo. canales: 'b2b' (profesionales) y/o 'b2c' (particulares). neto = precio sin IVA; pvp = precio final a particular.
-  // iva: 'general' (IVA deducible) o 'rebu' (régimen de margen). disponibilidad: 'Disponible' | 'En tránsito' | 'Reservado'. fotos: rutas relativas a esta carpeta.
-  // Para retirar un coche vendido basta con borrar su objeto (o poner canales: []).
-  const STOCK = [
-    {
-      "id": "ACLR-001",
-      "marca": "Peugeot",
-      "modelo": "2008",
-      "version": "Allure PureTech 100 S&S",
-      "carroceria": "SUV",
-      "anio": 2023,
-      "km": 85010,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 100,
-      "etiqueta": "C",
-      "color": "Blanco",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": "123 g/km",
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Disponible",
-      "iva": "general",
-      "venta": 9000,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [
-        "Peugeot i-Cockpit 3D",
-        "Pantalla táctil 10\"",
-        "Apple CarPlay / Android Auto",
-        "Climatizador automático",
-        "Sensores de aparcamiento traseros",
-        "Llantas de aleación 17\"",
-        "Faros LED",
-        "Control de crucero",
-        "Reconocimiento de señales"
-      ],
-      "destacado": true,
-      "fotos": [
-        "img/a001/01.jpg",
-        "img/a001/02.jpg",
-        "img/a001/03.jpg",
-        "img/a001/04.jpg",
-        "img/a001/05.jpg",
-        "img/a001/06.jpg",
-        "img/a001/07.jpg",
-        "img/a001/08.jpg"
-      ]
-    },
-    {
-      "id": "ACLR-002",
-      "marca": "Peugeot",
-      "modelo": "2008",
-      "version": "Allure PureTech 100 S&S",
-      "carroceria": "SUV",
-      "anio": 2023,
-      "km": 102754,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 100,
-      "etiqueta": "C",
-      "color": "Gris Artense metalizado",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": "123 g/km",
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Disponible",
-      "iva": "general",
-      "venta": 8200,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [
-        "Peugeot i-Cockpit 3D",
-        "Pantalla táctil 10\"",
-        "Apple CarPlay / Android Auto",
-        "Climatizador automático",
-        "Sensores de aparcamiento traseros",
-        "Llantas de aleación 17\"",
-        "Faros LED",
-        "Control de crucero",
-        "Reconocimiento de señales"
-      ],
-      "destacado": false,
-      "fotos": [
-        "img/a002/01.jpg",
-        "img/a002/02.jpg",
-        "img/a002/03.jpg",
-        "img/a002/04.jpg",
-        "img/a002/05.jpg",
-        "img/a002/06.jpg",
-        "img/a002/07.jpg",
-        "img/a002/08.jpg"
-      ]
-    },
-    {
-      "id": "ACLR-003",
-      "marca": "Opel",
-      "modelo": "Corsa",
-      "version": "Edition 1.2 XEL 75",
-      "carroceria": "Compacto",
-      "anio": 2023,
-      "km": 41613,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 5,
-      "cv": 75,
-      "etiqueta": "C",
-      "color": "Kristall Silver metalizado",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Seminuevo",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Disponible",
-      "iva": "general",
-      "venta": 7800,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [
-        "Pantalla multimedia 7\" con Apple CarPlay / Android Auto",
-        "Aire acondicionado",
-        "Faros LED",
-        "Control de crucero",
-        "Elevalunas eléctricos delanteros",
-        "Volante multifunción"
-      ],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V07",
-      "marca": "Peugeot",
-      "modelo": "3008",
-      "version": "Active Pack BlueHDi 130",
-      "carroceria": "SUV",
-      "anio": 2022,
-      "km": 42606,
-      "combustible": "Diésel",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 130,
-      "etiqueta": "C",
-      "color": "Azul",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-10",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V06",
-      "marca": "Seat",
-      "modelo": "Arona",
-      "version": "Style Edition 1.0 TSI 115",
-      "carroceria": "SUV",
-      "anio": 2020,
-      "km": 52241,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 115,
-      "etiqueta": "C",
-      "color": "Blanco",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-10",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V05",
-      "marca": "Seat",
-      "modelo": "León ST",
-      "version": "Xcellence 2.0 TDI 150 DSG",
-      "carroceria": "Familiar",
-      "anio": 2020,
-      "km": 104672,
-      "combustible": "Diésel",
-      "cambio": "Automático",
-      "marchas": 7,
-      "cv": 150,
-      "etiqueta": "C",
-      "color": "Gris",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-09",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V04",
-      "marca": "Peugeot",
-      "modelo": "3008",
-      "version": "Active Pack BlueHDi 130",
-      "carroceria": "SUV",
-      "anio": 2021,
-      "km": 83360,
-      "combustible": "Diésel",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 130,
-      "etiqueta": "C",
-      "color": "Azul",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-06",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V03",
-      "marca": "Volkswagen",
-      "modelo": "Golf",
-      "version": "Last Edition 1.6 TDI 115",
-      "carroceria": "Compacto",
-      "anio": 2020,
-      "km": 110033,
-      "combustible": "Diésel",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 115,
-      "etiqueta": "C",
-      "color": "Azul Atlántico",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-06",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V02",
-      "marca": "Peugeot",
-      "modelo": "2008",
-      "version": "Active Pack PureTech 100",
-      "carroceria": "SUV",
-      "anio": 2021,
-      "km": 70937,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 100,
-      "etiqueta": "C",
-      "color": "Blanco",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-06",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    },
-    {
-      "id": "ACLR-V01",
-      "marca": "Peugeot",
-      "modelo": "2008",
-      "version": "Active PureTech 100",
-      "carroceria": "SUV",
-      "anio": 2020,
-      "km": 81988,
-      "combustible": "Gasolina",
-      "cambio": "Manual",
-      "marchas": 6,
-      "cv": 100,
-      "etiqueta": "C",
-      "color": "Blanco",
-      "puertas": 5,
-      "plazas": 5,
-      "co2": null,
-      "estado": "Ocasión",
-      "origen": "ES",
-      "ubicacion": "Madrid",
-      "disponibilidad": "Vendido",
-      "vendido": "2026-05",
-      "iva": "general",
-      "venta": null,
-      "garantia": "12 meses",
-      "canales": [
-        "b2b",
-        "b2c"
-      ],
-      "lote": null,
-      "propietarios": 1,
-      "procedencia": "Renting, un solo titular",
-      "equipamiento": [],
-      "destacado": false,
-      "fotos": []
-    }
-  ];
+  // Los coches vienen de la vista pública `web_stock` de la herramienta de subastas (Supabase): se publican, se reservan y se dan por
+  // vendidos desde la herramienta (Compras → 🌐 Web). Esta página solo lee; la clave es la publicable y solo da acceso a esa vista.
+  // Precios: neto = recomendado sin IVA (profesionales); pvp = recomendado con IVA + margen de particulares (lo fija la herramienta).
+  const SB_URL = 'https://mtxbdemkyeiruxkbzthv.supabase.co', SB_KEY = 'sb_publishable_2AGQdnnD_Gnjjhw9Oa3XRg_CTvo9ZtS';
+  const GARANTIA = '12 meses';
+  function adaptar(r) {
+    const fotos = Array.isArray(r.fotos) ? r.fotos : [];
+    return { id: r.referencia || String(r.id), marca: r.marca || '', modelo: r.modelo || '', version: r.version || '', carroceria: r.carroceria || '',
+      anio: r.anio, km: Number(r.km) || 0, combustible: r.combustible || '', cambio: r.cambio || '', marchas: r.marchas || null, cv: r.cv != null ? Number(r.cv) : null,
+      etiqueta: r.etiqueta || '', color: r.color || '', puertas: r.puertas, plazas: r.plazas, co2: r.co2 || null, consumo: null,
+      estado: r.estado || 'Ocasión', origen: r.origen || 'ES', ubicacion: r.ubicacion || 'Madrid', disponibilidad: r.disponibilidad || 'Disponible', vendido: r.vendido || null,
+      iva: r.iva || 'general', neto: r.neto != null ? Number(r.neto) : null, venta: r.venta != null ? Number(r.venta) : null, pvp: r.pvp != null ? Number(r.pvp) : null,
+      garantia: GARANTIA, canales: Array.isArray(r.canales) && r.canales.length ? r.canales : ['b2b', 'b2c'], lote: null, propietarios: 1,
+      procedencia: r.procedencia || '', equipamiento: Array.isArray(r.equipamiento) ? r.equipamiento : [], texto: r.texto || '', destacado: !!r.destacado,
+      fotos: fotos.map((f) => f.url), fotosPeq: fotos.map((f) => f.peq || f.url) };
+  }
+  let STOCK = ([]).map(adaptar);   // en la web va vacío: se carga al arrancar
+  async function cargarStock() {
+    const r = await fetch(SB_URL + '/rest/v1/web_stock?select=*', { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, Accept: 'application/json' } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return (await r.json()).map(adaptar);
+  }
 
   const IVA = 0.21;
-  const MARGEN_PARTICULAR = 3500; // se suma al precio de venta (con IVA) para particulares
-  STOCK.forEach((c) => { if (c.venta) { c.neto = c.venta / (1 + IVA); c.pvp = c.venta + MARGEN_PARTICULAR; } });
   const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   const vendidoEn = (c) => { if (!c.vendido) return 'Vendido'; const [y, m] = c.vendido.split('-'); return 'Vendido en ' + MESES[Number(m) - 1] + ' de ' + y; };
   const isSold = (c) => c.disponibilidad === 'Vendido';
@@ -913,10 +526,10 @@
   }
 
   // ---------- Fragmentos ----------
-  const thumb = (src) => src.replace(/\.jpg$/i, '-s.jpg');
+  const thumb = (c, i) => (c.fotosPeq && c.fotosPeq[i]) || c.fotos[i];
   const CAM = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>';
   function photo(c, withLabel) {
-    const inner = c.fotos && c.fotos.length ? '<img src="' + esc(withLabel ? c.fotos[0] : thumb(c.fotos[0])) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '"' + (withLabel ? ' id="galMain"' : '') + '>' : '<div class="nophoto"><div>' + CAM + (withLabel ? '<span>Fotos bajo petición</span>' : '') + '</div></div>';
+    const inner = c.fotos && c.fotos.length ? '<img src="' + esc(withLabel ? c.fotos[0] : thumb(c, 0)) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '"' + (withLabel ? ' id="galMain"' : '') + '>' : '<div class="nophoto"><div>' + CAM + (withLabel ? '<span>Fotos bajo petición</span>' : '') + '</div></div>';
     return '<div class="photo">' + inner + '</div>';
   }
   const etq = (e) => '<span class="etq etq-' + esc(e) + '" title="Etiqueta DGT ' + esc(e) + '">' + esc(e) + '</span>';
@@ -1039,7 +652,7 @@
       : '<svg width="16" height="16" viewBox="0 0 24 24" fill="' + (sel ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>';
     const sold = isSold(c);
     return '<article class="card' + (reservado ? ' reservado' : '') + (sold ? ' vendido' : '') + '" data-id="' + c.id + '">' +
-      '<div class="photo">' + (c.fotos && c.fotos.length ? '<img src="' + esc(thumb(c.fotos[0])) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '" loading="lazy">' : '<div class="nophoto"><div>' + CAM + '<span>' + (sold ? 'Vendido' : 'Fotos bajo petición') + '</span></div></div>') +
+      '<div class="photo">' + (c.fotos && c.fotos.length ? '<img src="' + esc(thumb(c, 0)) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '" loading="lazy">' : '<div class="nophoto"><div>' + CAM + '<span>' + (sold ? 'Vendido' : 'Fotos bajo petición') + '</span></div></div>') +
       '<div class="badges"><span class="badge estado">' + esc(sold ? 'Vendido' : c.estado) + '</span>' + etq(c.etiqueta) + '</div>' +
       (sold ? '' : '<button type="button" class="save" data-act="toggle" data-id="' + c.id + '" aria-pressed="' + sel + '" aria-label="' + (b2b ? 'Añadir al lote' : 'Guardar') + '"' + (reservado && b2b ? ' disabled' : '') + '>' + icon + '</button>') + '</div>' +
       '<div class="card-body">' +
@@ -1176,7 +789,8 @@
     } else {
       pro = '<div class="section"><h3>Qué incluye</h3><div class="tags"><span>Garantía ' + esc(c.garantia) + '</span><span>Transferencia a tu nombre</span><span>Entrega en Madrid</span>' + (c.procedencia ? '<span>' + esc(c.procedencia) + '</span>' : '') + '</div></div>';
     }
-    const equip = '<div class="section"><h3>Equipamiento de serie de la versión</h3><div class="tags">' + c.equipamiento.map((e) => '<span>' + esc(e) + '</span>').join('') + '</div></div>';
+    const descr = c.texto ? '<div class="section"><h3>Descripción</h3><p style="margin:0;white-space:pre-wrap">' + esc(c.texto) + '</p></div>' : '';
+    const equip = c.equipamiento.length ? '<div class="section"><h3>Equipamiento de serie de la versión</h3><div class="tags">' + c.equipamiento.map((e) => '<span>' + esc(e) + '</span>').join('') + '</div></div>' : '';
     const priceBox = isSold(c)
       ? '<div class="pricebox"><div class="main sold-tag">' + vendidoEn(c) + '</div><div class="sub">Si buscas un vehículo similar, dínoslo y te avisamos cuando entre uno en stock.</div></div>'
       : b2b
@@ -1189,9 +803,9 @@
       : '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="ask" data-id="' + c.id + '">' + (reservado ? 'Lista de espera' : 'Solicitar información') + '</button>' + (reservado ? '' : '<button type="button" class="btn btn-outline" data-act="reserve" data-id="' + c.id + '">Reservar</button>') + '<button type="button" class="btn btn-ghost" data-act="toggle" data-id="' + c.id + '">' + (sel ? 'Quitar de guardados' : 'Guardar') + '</button></div>';
     $('#detailContent').innerHTML =
       '<div class="dlg-head"><div><h2>' + esc(c.marca + ' ' + c.modelo + ' ' + c.version) + '</h2><div class="ref">Ref. ' + c.id + ' · ' + esc(isSold(c) ? 'Vendido' : c.estado) + (b2b ? '' : ' · ' + c.anio + ' · ' + fmtNum(c.km) + ' km') + '</div></div><button type="button" class="x" data-act="close" aria-label="Cerrar">✕</button></div>' +
-      '<div class="dlg-body"><div class="detail"><div>' + photo(c, true) + (c.fotos && c.fotos.length > 1 ? '<div class="thumbs">' + c.fotos.map((f, i) => '<img src="' + esc(thumb(f)) + '" data-full="' + esc(f) + '" alt="" class="' + (i === 0 ? 'on' : '') + '" loading="lazy">').join('') + '</div>' : '') + '</div>' +
+      '<div class="dlg-body"><div class="detail"><div>' + photo(c, true) + (c.fotos && c.fotos.length > 1 ? '<div class="thumbs">' + c.fotos.map((f, i) => '<img src="' + esc(thumb(c, i)) + '" data-full="' + esc(f) + '" alt="" class="' + (i === 0 ? 'on' : '') + '" loading="lazy">').join('') + '</div>' : '') + '</div>' +
       '<div style="display:grid;gap:16px;min-width:0;align-content:start">' + priceBox + actions + '</div></div>' +
-      '<div class="section"><h3>Características</h3><div class="kv">' + specs + '</div></div>' + (isSold(c) ? '' : pro + equip) + '</div>';
+      '<div class="section"><h3>Características</h3><div class="kv">' + specs + '</div></div>' + (isSold(c) ? '' : pro + descr + equip) + '</div>';
     const dlg = $('#dlgDetail'); if (!dlg.open) dlg.showModal(); dlg.scrollTop = 0;
   }
 
@@ -1301,10 +915,18 @@
   ['dlgDetail', 'dlgContact'].forEach((id) => { const d = $('#' + id); d.addEventListener('click', (ev) => { if (ev.target === d) d.close(); }); });
 
   // ---------- Arranque ----------
-  load();
-  if (location.hash === '#profesionales') state.mode = 'b2b'; else if (location.hash === '#particulares') state.mode = 'b2c';
-  $('#viewGrid').setAttribute('aria-pressed', state.view === 'grid'); $('#viewTable').setAttribute('aria-pressed', state.view === 'table');
-  applyMode(state.mode, location.hash === '#profesionales' || location.hash === '#particulares');
+  async function arrancar() {
+    if (!STOCK.length && SB_URL) {
+      $('#list').innerHTML = '<div class="empty">Cargando el stock…</div>';
+      try { STOCK = await cargarStock(); }
+      catch (e) { $('#list').innerHTML = '<div class="empty">Ahora mismo no podemos mostrar el stock. Escríbenos a <b style="user-select:all">' + EMAIL + '</b> y te lo enviamos.</div>'; return; }
+    }
+    load();
+    if (location.hash === '#profesionales') state.mode = 'b2b'; else if (location.hash === '#particulares') state.mode = 'b2c';
+    $('#viewGrid').setAttribute('aria-pressed', state.view === 'grid'); $('#viewTable').setAttribute('aria-pressed', state.view === 'table');
+    applyMode(state.mode, location.hash === '#profesionales' || location.hash === '#particulares');
+  }
+  arrancar();
 })();
 </script>
 </body>
