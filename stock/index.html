@@ -196,6 +196,10 @@
   .pill.ok { background: var(--ok-soft); color: var(--ok); }
   .pill.warn { background: var(--warn-soft); color: var(--warn); }
   .pill.bad { background: var(--bad-soft); color: var(--bad); }
+  .pill.off { background: var(--ph); color: var(--muted); }
+  .card.vendido .photo { filter: grayscale(1); opacity: .55; }
+  .card.vendido .card-title h3, .card.vendido .specs { color: var(--muted); }
+  .price .main.sold-tag, .pricebox .main.sold-tag { font-size: 17px; color: var(--muted); }
   .card-actions { display: flex; gap: 8px; }
   .card-actions .btn { flex: 1; }
   .card-actions .btn-primary { box-shadow: none; }
@@ -396,12 +400,15 @@
     <div class="f-group b2b-only">
       <label class="row"><input type="checkbox" id="ivaDed"> Solo IVA deducible (régimen general)</label>
     </div>
+    <div class="f-group">
+      <label class="row"><input type="checkbox" id="verVendidos" checked> Mostrar vehículos ya vendidos</label>
+    </div>
   </aside>
 
   <section class="results" aria-label="Resultados">
     <div class="toolbar">
       <div class="meta">
-        <span><b id="resCount">0</b> vehículos</span>
+        <span><b id="resCount">0</b> disponibles<span id="resSold"></span></span>
         <span id="activeFilters"></span>
       </div>
       <button type="button" class="btn btn-ghost btn-sm filters-toggle" id="openFilters">
@@ -610,20 +617,275 @@
       ],
       "destacado": false,
       "fotos": []
+    },
+    {
+      "id": "ACLR-V07",
+      "marca": "Peugeot",
+      "modelo": "3008",
+      "version": "Active Pack BlueHDi 130",
+      "carroceria": "SUV",
+      "anio": 2022,
+      "km": 42606,
+      "combustible": "Diésel",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 130,
+      "etiqueta": "C",
+      "color": "Azul",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-10",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V06",
+      "marca": "Seat",
+      "modelo": "Arona",
+      "version": "Style Edition 1.0 TSI 115",
+      "carroceria": "SUV",
+      "anio": 2020,
+      "km": 52241,
+      "combustible": "Gasolina",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 115,
+      "etiqueta": "C",
+      "color": "Blanco",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-10",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V05",
+      "marca": "Seat",
+      "modelo": "León ST",
+      "version": "Xcellence 2.0 TDI 150 DSG",
+      "carroceria": "Familiar",
+      "anio": 2020,
+      "km": 104672,
+      "combustible": "Diésel",
+      "cambio": "Automático",
+      "marchas": 7,
+      "cv": 150,
+      "etiqueta": "C",
+      "color": "Gris",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-09",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V04",
+      "marca": "Peugeot",
+      "modelo": "3008",
+      "version": "Active Pack BlueHDi 130",
+      "carroceria": "SUV",
+      "anio": 2021,
+      "km": 83360,
+      "combustible": "Diésel",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 130,
+      "etiqueta": "C",
+      "color": "Azul",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-06",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V03",
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "version": "Last Edition 1.6 TDI 115",
+      "carroceria": "Compacto",
+      "anio": 2020,
+      "km": 110033,
+      "combustible": "Diésel",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 115,
+      "etiqueta": "C",
+      "color": "Azul Atlántico",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-06",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V02",
+      "marca": "Peugeot",
+      "modelo": "2008",
+      "version": "Active Pack PureTech 100",
+      "carroceria": "SUV",
+      "anio": 2021,
+      "km": 70937,
+      "combustible": "Gasolina",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 100,
+      "etiqueta": "C",
+      "color": "Blanco",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-06",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
+    },
+    {
+      "id": "ACLR-V01",
+      "marca": "Peugeot",
+      "modelo": "2008",
+      "version": "Active PureTech 100",
+      "carroceria": "SUV",
+      "anio": 2020,
+      "km": 81988,
+      "combustible": "Gasolina",
+      "cambio": "Manual",
+      "marchas": 6,
+      "cv": 100,
+      "etiqueta": "C",
+      "color": "Blanco",
+      "puertas": 5,
+      "plazas": 5,
+      "co2": null,
+      "estado": "Ocasión",
+      "origen": "ES",
+      "ubicacion": "Madrid",
+      "disponibilidad": "Vendido",
+      "vendido": "2026-05",
+      "iva": "general",
+      "venta": null,
+      "garantia": "12 meses",
+      "canales": [
+        "b2b",
+        "b2c"
+      ],
+      "lote": null,
+      "propietarios": 1,
+      "procedencia": "Renting, un solo titular",
+      "equipamiento": [],
+      "destacado": false,
+      "fotos": []
     }
   ];
 
   const IVA = 0.21;
   const MARGEN_PARTICULAR = 3500; // se suma al precio de venta (con IVA) para particulares
   STOCK.forEach((c) => { if (c.venta) { c.neto = c.venta / (1 + IVA); c.pvp = c.venta + MARGEN_PARTICULAR; } });
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const vendidoEn = (c) => { if (!c.vendido) return 'Vendido'; const [y, m] = c.vendido.split('-'); return 'Vendido en ' + MESES[Number(m) - 1] + ' de ' + y; };
+  const isSold = (c) => c.disponibilidad === 'Vendido';
   const EMAIL = 'info@aclrmobility.com';
-  const ORDER = { combustible: ['Gasolina', 'Diésel', 'Híbrido', 'Híbrido enchufable', 'Eléctrico', 'GLP'], etiqueta: ['0', 'ECO', 'C', 'B'], estado: ['0 km', 'Seminuevo', 'Ocasión'], disponibilidad: ['Disponible', 'En tránsito', 'Reservado'], origen: ['ES', 'FR', 'DE'] };
+  const ORDER = { combustible: ['Gasolina', 'Diésel', 'Híbrido', 'Híbrido enchufable', 'Eléctrico', 'GLP'], etiqueta: ['0', 'ECO', 'C', 'B'], estado: ['0 km', 'Seminuevo', 'Ocasión'], disponibilidad: ['Disponible', 'En tránsito', 'Reservado', 'Vendido'], origen: ['ES', 'FR', 'DE'] };
   const LABEL = { ES: 'España', FR: 'Francia', DE: 'Alemania' };
 
   // ---------- Estado ----------
   const state = {
     mode: 'b2b', q: '', sort: 'rel', view: 'grid',
-    f: { marca: new Set(), carroceria: new Set(), combustible: new Set(), cambio: new Set(), etiqueta: new Set(), estado: new Set(), disponibilidad: new Set(), origen: new Set(), pMin: null, pMax: null, kmMax: 80000, anioMin: null, ivaDed: false },
+    f: { marca: new Set(), carroceria: new Set(), combustible: new Set(), cambio: new Set(), etiqueta: new Set(), estado: new Set(), disponibilidad: new Set(), origen: new Set(), pMin: null, pMax: null, kmMax: 80000, anioMin: null, ivaDed: false, vendidos: true },
     lote: new Set(), favs: new Set()
   };
 
@@ -659,7 +921,7 @@
   }
   const etq = (e) => '<span class="etq etq-' + esc(e) + '" title="Etiqueta DGT ' + esc(e) + '">' + esc(e) + '</span>';
   function dispPill(c) {
-    const cls = c.disponibilidad === 'Disponible' ? 'ok' : c.disponibilidad === 'En tránsito' ? 'warn' : 'bad';
+    const cls = c.disponibilidad === 'Disponible' ? 'ok' : c.disponibilidad === 'En tránsito' ? 'warn' : c.disponibilidad === 'Vendido' ? 'off' : 'bad';
     return '<span class="pill ' + cls + '">' + esc(c.disponibilidad) + '</span>';
   }
 
@@ -684,6 +946,7 @@
   function filtered() {
     const f = state.f; const q = state.q.trim().toLowerCase();
     const list = STOCK.filter(visible).filter((c) => {
+      if (isSold(c) && !f.vendidos) return false;
       if (f.marca.size && !f.marca.has(c.marca)) return false;
       if (f.carroceria.size && !f.carroceria.has(c.carroceria)) return false;
       if (f.combustible.size && !f.combustible.has(c.combustible)) return false;
@@ -696,8 +959,8 @@
         if (f.ivaDed && c.iva !== 'general') return false;
       }
       const p = precio(c);
-      if (f.pMin !== null && p < f.pMin) return false;
-      if (f.pMax !== null && p > f.pMax) return false;
+      if (!isSold(c) && f.pMin !== null && p < f.pMin) return false;
+      if (!isSold(c) && f.pMax !== null && p > f.pMax) return false;
       if (f.kmMax < 80000 && c.km > f.kmMax) return false;
       if (f.anioMin && c.anio < f.anioMin) return false;
       if (q) {
@@ -708,6 +971,8 @@
     });
     const s = state.sort;
     list.sort((a, b) => {
+      if (isSold(a) !== isSold(b)) return isSold(a) ? 1 : -1;
+      if (isSold(a)) return (b.vendido || '').localeCompare(a.vendido || '');
       if (s === 'precio-asc') return precio(a) - precio(b);
       if (s === 'precio-desc') return precio(b) - precio(a);
       if (s === 'km-asc') return a.km - b.km;
@@ -758,6 +1023,7 @@
 
   // ---------- Resultados ----------
   function priceHTML(c) {
+    if (isSold(c)) return '<div class="price"><div class="main sold-tag">' + vendidoEn(c) + '</div></div>';
     if (state.mode === 'b2b') {
       const sub = c.iva === 'general' ? fmtEur(c.venta || c.neto * (1 + IVA)) + ' con IVA' : 'Precio final · REBU';
       return '<div class="price"><div class="main num">' + fmtEur(c.neto) + '<small class="num">' + (c.iva === 'general' ? 'Neto sin IVA · ' + sub : 'Régimen de margen (REBU)') + '</small></div><div class="side">' + (c.lote ? 'Lote ' + esc(c.lote) : 'Unidad suelta') + '</div></div>';
@@ -771,17 +1037,18 @@
     const icon = b2b
       ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (sel ? '<path d="M20 6 9 17l-5-5"/>' : '<path d="M12 5v14M5 12h14"/>') + '</svg>'
       : '<svg width="16" height="16" viewBox="0 0 24 24" fill="' + (sel ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>';
-    return '<article class="card' + (reservado ? ' reservado' : '') + '" data-id="' + c.id + '">' +
-      '<div class="photo">' + (c.fotos && c.fotos.length ? '<img src="' + esc(thumb(c.fotos[0])) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '" loading="lazy">' : '<div class="nophoto"><div>' + CAM + '<span>Fotos bajo petición</span></div></div>') +
-      '<div class="badges"><span class="badge estado">' + esc(c.estado) + '</span>' + etq(c.etiqueta) + '</div>' +
-      '<button type="button" class="save" data-act="toggle" data-id="' + c.id + '" aria-pressed="' + sel + '" aria-label="' + (b2b ? 'Añadir al lote' : 'Guardar') + '"' + (reservado && b2b ? ' disabled' : '') + '>' + icon + '</button></div>' +
+    const sold = isSold(c);
+    return '<article class="card' + (reservado ? ' reservado' : '') + (sold ? ' vendido' : '') + '" data-id="' + c.id + '">' +
+      '<div class="photo">' + (c.fotos && c.fotos.length ? '<img src="' + esc(thumb(c.fotos[0])) + '" alt="' + esc(c.marca + ' ' + c.modelo) + '" loading="lazy">' : '<div class="nophoto"><div>' + CAM + '<span>' + (sold ? 'Vendido' : 'Fotos bajo petición') + '</span></div></div>') +
+      '<div class="badges"><span class="badge estado">' + esc(sold ? 'Vendido' : c.estado) + '</span>' + etq(c.etiqueta) + '</div>' +
+      (sold ? '' : '<button type="button" class="save" data-act="toggle" data-id="' + c.id + '" aria-pressed="' + sel + '" aria-label="' + (b2b ? 'Añadir al lote' : 'Guardar') + '"' + (reservado && b2b ? ' disabled' : '') + '>' + icon + '</button>') + '</div>' +
       '<div class="card-body">' +
       '<div class="card-title"><h3>' + esc(c.marca + ' ' + c.modelo) + '</h3><p>' + esc(c.version) + '</p></div>' +
       '<div class="specs"><div><span>' + c.anio + '</span><span class="num">' + (c.km === 0 ? '0 km' : fmtNum(c.km) + ' km') + '</span><span>' + esc(c.combustible) + '</span></div><div><span>' + esc(c.cambio) + '</span><span>' + c.cv + ' CV</span><span>' + esc(c.carroceria) + '</span></div></div>' +
       priceHTML(c) +
-      '<div class="card-foot"><span>' + esc(b2b ? c.ubicacion : (c.origen === 'ES' ? 'Entrega en Madrid' : 'Importado · entrega en Madrid')) + '</span>' + (b2b ? dispPill(c) : (reservado ? '<span class="pill bad">Reservado</span>' : '<span class="pill ok">Garantía ' + esc(c.garantia.split(' ·')[0]) + '</span>')) + '</div>' +
+      '<div class="card-foot"><span>' + esc(sold ? 'Entregado' : b2b ? c.ubicacion : (c.origen === 'ES' ? 'Entrega en Madrid' : 'Importado · entrega en Madrid')) + '</span>' + (sold ? '<span class="pill off">Vendido</span>' : b2b ? dispPill(c) : (reservado ? '<span class="pill bad">Reservado</span>' : '<span class="pill ok">Garantía ' + esc(c.garantia.split(' ·')[0]) + '</span>')) + '</div>' +
       '<div class="card-actions"><button type="button" class="btn btn-outline btn-sm" data-act="detail" data-id="' + c.id + '">Ver ficha</button>' +
-      (b2b ? '<button type="button" class="btn btn-primary btn-sm" data-act="toggle" data-id="' + c.id + '"' + (reservado ? ' disabled' : '') + '>' + (sel ? 'En el lote' : 'Añadir al lote') + '</button>'
+      (sold ? '<button type="button" class="btn btn-ghost btn-sm" data-act="similar" data-id="' + c.id + '">Busco uno similar</button>' : b2b ? '<button type="button" class="btn btn-primary btn-sm" data-act="toggle" data-id="' + c.id + '"' + (reservado ? ' disabled' : '') + '>' + (sel ? 'En el lote' : 'Añadir al lote') + '</button>'
         : '<button type="button" class="btn btn-primary btn-sm" data-act="ask" data-id="' + c.id + '">' + (reservado ? 'Lista de espera' : 'Solicitar información') + '</button>') +
       '</div></div></article>';
   }
@@ -792,6 +1059,7 @@
       : '<tr><th>Ref.</th><th>Vehículo</th><th>Año</th><th class="r">Km</th><th>Comb.</th><th>Cambio</th><th>Etiq.</th><th>Garantía</th><th class="r">Precio</th><th></th></tr>';
     const rows = list.map((c) => {
       const common = '<td class="num">' + c.id + '</td><td><span class="veh">' + esc(c.marca + ' ' + c.modelo) + '<small>' + esc(c.version) + '</small></span></td><td>' + c.anio + '</td><td class="r num">' + fmtNum(c.km) + '</td><td>' + esc(c.combustible) + '</td><td>' + esc(c.cambio) + '</td><td>' + etq(c.etiqueta) + '</td>';
+      if (isSold(c)) return '<tr style="color:var(--muted)">' + common + (b2b ? '<td>' + c.origen + '</td><td>—</td><td>—</td>' : '<td>—</td>') + '<td class="r">' + vendidoEn(c) + '</td>' + (b2b ? '<td>' + dispPill(c) + '</td>' : '') + '<td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button></td></tr>';
       if (b2b) return '<tr>' + common + '<td>' + c.origen + '</td><td>' + esc(c.ubicacion) + '</td><td>' + (c.iva === 'general' ? 'Deducible' : 'REBU') + '</td><td class="r num"><b>' + fmtEur(c.neto) + '</b></td><td>' + dispPill(c) + '</td><td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button> <button type="button" class="rowbtn" data-act="toggle" data-id="' + c.id + '"' + (c.disponibilidad === 'Reservado' ? ' disabled' : '') + '>' + (state.lote.has(c.id) ? 'Quitar' : '+ Lote') + '</button></td></tr>';
       return '<tr>' + common + '<td>' + esc(c.garantia.split(' ·')[0]) + '</td><td class="r num"><b>' + fmtEur(c.pvp) + '</b></td><td><button type="button" class="rowbtn" data-act="detail" data-id="' + c.id + '">Ficha</button> <button type="button" class="rowbtn" data-act="ask" data-id="' + c.id + '">Información</button></td></tr>';
     }).join('');
@@ -799,7 +1067,9 @@
   }
   function render() {
     const list = filtered();
-    $('#resCount').textContent = list.length;
+    const nDisp = list.filter((c) => !isSold(c)).length, nSold = list.length - nDisp;
+    $('#resCount').textContent = nDisp;
+    $('#resSold').textContent = nSold ? ' · ' + nSold + ' vendido' + (nSold > 1 ? 's' : '') : '';
     const n = activeFilterCount();
     $('#activeFilters').textContent = n ? '· ' + n + ' filtro' + (n > 1 ? 's' : '') + ' activo' + (n > 1 ? 's' : '') : '';
     const host = $('#list');
@@ -859,6 +1129,7 @@
   function selection() { return state.mode === 'b2b' ? state.lote : state.favs; }
   function toggle(id) {
     const c = byId(id); if (!c) return;
+    if (isSold(c)) { toast('Vehículo ya vendido'); return; }
     if (state.mode === 'b2b' && c.disponibilidad === 'Reservado') { toast('Unidad reservada: no se puede añadir al lote'); return; }
     const set = selection();
     if (set.has(id)) { set.delete(id); toast(state.mode === 'b2b' ? 'Quitado del lote' : 'Quitado de guardados'); }
@@ -906,17 +1177,21 @@
       pro = '<div class="section"><h3>Qué incluye</h3><div class="tags"><span>Garantía ' + esc(c.garantia) + '</span><span>Transferencia a tu nombre</span><span>Entrega en Madrid</span>' + (c.procedencia ? '<span>' + esc(c.procedencia) + '</span>' : '') + '</div></div>';
     }
     const equip = '<div class="section"><h3>Equipamiento de serie de la versión</h3><div class="tags">' + c.equipamiento.map((e) => '<span>' + esc(e) + '</span>').join('') + '</div></div>';
-    const priceBox = b2b
+    const priceBox = isSold(c)
+      ? '<div class="pricebox"><div class="main sold-tag">' + vendidoEn(c) + '</div><div class="sub">Si buscas un vehículo similar, dínoslo y te avisamos cuando entre uno en stock.</div></div>'
+      : b2b
       ? '<div class="pricebox"><div class="main num">' + fmtEur(c.neto) + '</div><div class="sub">' + (c.iva === 'general' ? 'Precio neto, sin IVA · <b class="num">' + fmtEur(c.venta || c.neto * (1 + IVA)) + '</b> con IVA 21 % deducible' : 'Precio final en régimen de margen (REBU), IVA no deducible') + '</div><div class="sub">Transporte a tu campa presupuestado aparte · ' + (c.lote ? 'forma parte del lote ' + esc(c.lote) : 'unidad suelta') + '</div></div>'
       : '<div class="pricebox"><div class="main num">' + fmtEur(c.pvp) + '</div><div class="sub">Precio al contado · IVA y transferencia incluidos</div>' + (reservado ? '<div class="sub" style="color:var(--bad)">Reservado: puedes apuntarte a la lista de espera.</div>' : '') + '</div>';
-    const actions = b2b
+    const actions = isSold(c)
+      ? '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="similar" data-id="' + c.id + '">Busco uno similar</button></div>'
+      : b2b
       ? '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="toggle" data-id="' + c.id + '"' + (reservado ? ' disabled' : '') + '>' + (sel ? 'Quitar del lote' : 'Añadir al lote') + '</button><button type="button" class="btn btn-outline" data-act="ask" data-id="' + c.id + '">Solicitar oferta</button></div>'
       : '<div class="dlg-actions"><button type="button" class="btn btn-primary" data-act="ask" data-id="' + c.id + '">' + (reservado ? 'Lista de espera' : 'Solicitar información') + '</button>' + (reservado ? '' : '<button type="button" class="btn btn-outline" data-act="reserve" data-id="' + c.id + '">Reservar</button>') + '<button type="button" class="btn btn-ghost" data-act="toggle" data-id="' + c.id + '">' + (sel ? 'Quitar de guardados' : 'Guardar') + '</button></div>';
     $('#detailContent').innerHTML =
-      '<div class="dlg-head"><div><h2>' + esc(c.marca + ' ' + c.modelo + ' ' + c.version) + '</h2><div class="ref">Ref. ' + c.id + ' · ' + esc(c.estado) + (b2b ? '' : ' · ' + c.anio + ' · ' + fmtNum(c.km) + ' km') + '</div></div><button type="button" class="x" data-act="close" aria-label="Cerrar">✕</button></div>' +
+      '<div class="dlg-head"><div><h2>' + esc(c.marca + ' ' + c.modelo + ' ' + c.version) + '</h2><div class="ref">Ref. ' + c.id + ' · ' + esc(isSold(c) ? 'Vendido' : c.estado) + (b2b ? '' : ' · ' + c.anio + ' · ' + fmtNum(c.km) + ' km') + '</div></div><button type="button" class="x" data-act="close" aria-label="Cerrar">✕</button></div>' +
       '<div class="dlg-body"><div class="detail"><div>' + photo(c, true) + (c.fotos && c.fotos.length > 1 ? '<div class="thumbs">' + c.fotos.map((f, i) => '<img src="' + esc(thumb(f)) + '" data-full="' + esc(f) + '" alt="" class="' + (i === 0 ? 'on' : '') + '" loading="lazy">').join('') + '</div>' : '') + '</div>' +
       '<div style="display:grid;gap:16px;min-width:0;align-content:start">' + priceBox + actions + '</div></div>' +
-      '<div class="section"><h3>Características</h3><div class="kv">' + specs + '</div></div>' + pro + equip + '</div>';
+      '<div class="section"><h3>Características</h3><div class="kv">' + specs + '</div></div>' + (isSold(c) ? '' : pro + equip) + '</div>';
     const dlg = $('#dlgDetail'); if (!dlg.open) dlg.showModal(); dlg.scrollTop = 0;
   }
 
@@ -974,7 +1249,7 @@
   }
   function clearFilters() {
     const f = state.f; ['marca', 'carroceria', 'combustible', 'cambio', 'etiqueta', 'estado', 'disponibilidad', 'origen'].forEach((k) => f[k].clear());
-    f.pMin = f.pMax = null; f.kmMax = 80000; f.anioMin = null; f.ivaDed = false; state.q = '';
+    f.pMin = f.pMax = null; f.kmMax = 80000; f.anioMin = null; f.ivaDed = false; f.vendidos = true; $('#verVendidos').checked = true; state.q = '';
     $('#pMin').value = ''; $('#pMax').value = ''; $('#kmMax').value = 80000; $('#ivaDed').checked = false; $('#q').value = '';
     renderFilterUI(); render(); renderQuick();
   }
@@ -987,6 +1262,7 @@
     else if (act === 'detail') openDetail(id);
     else if (act === 'ask') askCar(id, false);
     else if (act === 'reserve') askCar(id, true);
+    else if (act === 'similar') { const c = byId(id); if (c) openContact({ title: 'Busco un vehículo similar', subject: 'Busco un ' + c.marca + ' ' + c.modelo + ' similar al ' + c.id, body: 'Me interesa un vehículo similar a este, que ya está vendido:\n' + c.marca + ' ' + c.modelo + ' ' + c.version + ' · ' + c.anio + ' · ' + fmtNum(c.km) + ' km\n\nAvisadme cuando tengáis uno parecido en stock.' }); }
     else if (act === 'close') { const d = b.closest('dialog'); if (d) d.close(); }
   });
   document.addEventListener('click', (ev) => {
@@ -1007,6 +1283,7 @@
   $('#kmMax').addEventListener('input', (ev) => { state.f.kmMax = Number(ev.target.value); $('#kmMaxOut').textContent = state.f.kmMax >= 80000 ? 'Sin límite' : 'Hasta ' + fmtNum(state.f.kmMax) + ' km'; render(); });
   $('#anioMin').addEventListener('change', (ev) => { state.f.anioMin = ev.target.value ? Number(ev.target.value) : null; render(); });
   $('#ivaDed').addEventListener('change', (ev) => { state.f.ivaDed = ev.target.checked; render(); });
+  $('#verVendidos').addEventListener('change', (ev) => { state.f.vendidos = ev.target.checked; render(); });
   $('#q').addEventListener('input', (ev) => { state.q = ev.target.value; render(); });
   $('#sort').addEventListener('change', (ev) => { state.sort = ev.target.value; render(); });
   $('#viewGrid').addEventListener('click', () => { state.view = 'grid'; $('#viewGrid').setAttribute('aria-pressed', 'true'); $('#viewTable').setAttribute('aria-pressed', 'false'); save(); render(); });
